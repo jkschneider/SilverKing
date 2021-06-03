@@ -3,9 +3,8 @@ package com.ms.silverking.cloud.dht.daemon.storage.fsm;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class InvalidatedOffsetsElementTest {
   private static final int numOffsets = 10;
@@ -26,6 +25,6 @@ public class InvalidatedOffsetsElementTest {
     //System.out.printf("%s\n", StringUtil.toString(io0, ' '));
     //System.out.printf("%s\n", StringUtil.toString(io1, ' '));
     System.out.printf("%s\n", io0.equals(io1));
-    Assert.assertEquals(io0, io1);
+    Assertions.assertEquals(io0, io1);
   }
 }

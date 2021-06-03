@@ -1,15 +1,18 @@
 package com.ms.silverking.time;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TimeSourceUtilTest {
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testRelTimeRemainingAsInt_Overflow() {
-    TimeSourceUtil.relTimeRemainingAsInt(4_000_000_000L, 0L);
+    assertThrows(IllegalArgumentException.class, () -> {
+      TimeSourceUtil.relTimeRemainingAsInt(4_000_000_000L, 0L);
+    });
   }
 
   @Test
@@ -26,8 +29,8 @@ public class TimeSourceUtilTest {
   }
 
   private void checkRelTimeRemainingAsInt(long deadline, long currentTime, int expectedRemaining) {
-    assertEquals(getTestMessage("relTimeRemainingAsInt", deadline, currentTime), expectedRemaining,
-        TimeSourceUtil.relTimeRemainingAsInt(deadline, currentTime));
+    assertEquals(expectedRemaining,
+        TimeSourceUtil.relTimeRemainingAsInt(deadline, currentTime), getTestMessage("relTimeRemainingAsInt", deadline, currentTime));
   }
 
 }

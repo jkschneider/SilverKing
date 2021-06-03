@@ -1,14 +1,11 @@
 package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
-import static com.ms.silverking.testing.Util.double_nan;
-import static com.ms.silverking.testing.Util.double_negInf;
-import static com.ms.silverking.testing.Util.double_posInf;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertTrue;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NumArgValidatorTest {
 

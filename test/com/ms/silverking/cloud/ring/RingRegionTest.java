@@ -1,15 +1,12 @@
 package com.ms.silverking.cloud.ring;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_Equals;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
+import static com.ms.silverking.testing.AssertFunction.*;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RingRegionTest {
 
@@ -40,8 +37,8 @@ public class RingRegionTest {
       long expectedStart = (long) testCase[1];
       long expectedEnd = (long) testCase[2];
 
-      assertEquals(getTestMessage("testStart", region), expectedStart, region.getStart());
-      assertEquals(getTestMessage("testEnd", region), expectedEnd, region.getEnd());
+      assertEquals(expectedStart, region.getStart(), getTestMessage("testStart", region));
+      assertEquals(expectedEnd, region.getEnd(), getTestMessage("testEnd", region));
     }
   }
 
@@ -54,7 +51,7 @@ public class RingRegionTest {
       RingRegion region = (RingRegion) testCase[0];
       long expected = (long) testCase[1];
 
-      assertEquals(getTestMessage("getSize", region), expected, region.getSize());
+      assertEquals(expected, region.getSize(), getTestMessage("getSize", region));
     }
   }
 
@@ -75,8 +72,8 @@ public class RingRegionTest {
       boolean expectedBefore = (boolean) testCase[3];
       boolean expectedAfter = (boolean) testCase[4];
 
-      assertEquals(getTestMessage("testBefore", region, p0, p1), expectedBefore, region.before(p0, p1));
-      assertEquals(getTestMessage("testAfter", region, p0, p1), expectedAfter, region.after(p0, p1));
+      assertEquals(expectedBefore, region.before(p0, p1), getTestMessage("testBefore", region, p0, p1));
+      assertEquals(expectedAfter, region.after(p0, p1), getTestMessage("testAfter", region, p0, p1));
     }
   }
 
@@ -95,7 +92,7 @@ public class RingRegionTest {
       double expected = (double) testCase[1];
 
       int delta = 0;
-      assertEquals(getTestMessage("getRingspaceFraction", region), expected, region.getRingspaceFraction(), delta);
+      assertEquals(expected, region.getRingspaceFraction(), delta, getTestMessage("getRingspaceFraction", region));
     }
   }
 
@@ -152,9 +149,9 @@ public class RingRegionTest {
       RingRegion expected = (RingRegion) testCase[1];
       long size = (long) testCase[2];
 
-      assertEquals(getTestMessage("parseZkString", s), expected, RingRegion.parseZKString(s));
-      assertEquals(getTestMessage("toZKString", expected), s, expected.toZKString());
-      assertEquals(getTestMessage("toString", expected), "[" + s + ":" + size + "]", expected.toString());
+      assertEquals(expected, RingRegion.parseZKString(s), getTestMessage("parseZkString", s));
+      assertEquals(s, expected.toZKString(), getTestMessage("toZKString", expected));
+      assertEquals("[" + s + ":" + size + "]", expected.toString(), getTestMessage("toString", expected));
     }
   }
 
@@ -172,7 +169,7 @@ public class RingRegionTest {
       RingRegion r2 = (RingRegion) testCase[1];
       boolean expected = (boolean) testCase[2];
 
-      assertEquals(getTestMessage("isContiguousWith", r1, r2), expected, r1.isContiguousWith(r2));
+      assertEquals(expected, r1.isContiguousWith(r2), getTestMessage("isContiguousWith", r1, r2));
     }
   }
 
@@ -193,7 +190,7 @@ public class RingRegionTest {
       long point = (long) testCase[1];
       boolean expected = (boolean) testCase[2];
 
-      assertEquals(getTestMessage("contains", region1, point), expected, region1.contains(point));
+      assertEquals(expected, region1.contains(point), getTestMessage("contains", region1, point));
     }
   }
 
@@ -209,7 +206,7 @@ public class RingRegionTest {
       RingRegion region2 = (RingRegion) testCase[1];
       boolean expected = (boolean) testCase[2];
 
-      assertEquals(getTestMessage("overlaps", region1, region2), expected, region1.overlaps(region2));
+      assertEquals(expected, region1.overlaps(region2), getTestMessage("overlaps", region1, region2));
     }
   }
 

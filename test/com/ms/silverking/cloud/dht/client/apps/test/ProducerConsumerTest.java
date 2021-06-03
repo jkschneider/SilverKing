@@ -4,7 +4,7 @@ import static com.ms.silverking.cloud.dht.client.example.ProducerConsumerTest.TI
 
 import java.io.IOException;
 
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 
 import com.ms.silverking.cloud.dht.client.ClientException;
@@ -69,7 +69,7 @@ public class ProducerConsumerTest {
     
     private static ProducerConsumer pc;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws ClientException, IOException {
         String ns = com.ms.silverking.cloud.dht.client.example.ProducerConsumer.pcNamespace+"2";    // ns needs to be unique across all tests running (ProducerConsumerTest in cloud.dht.client.example is already using pcNamespace)
         pc = new ProducerConsumer( Util.getTestGridConfig(), ns, null, (Util.isSetQuietMode())? 0 : 1 );

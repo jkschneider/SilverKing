@@ -1,12 +1,9 @@
 package com.ms.silverking.util;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
-import static com.ms.silverking.testing.Util.copy;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static com.ms.silverking.testing.Util.sort;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
 import org.junit.Test;
@@ -58,8 +55,8 @@ public class ArraysTest {
   }
 
   private void checkMatchesRegion(byte[] a1, int offset1, byte[] a2, int offset2, int length, boolean expected) {
-    assertEquals(getTestMessage("matchesRegion", createToString(a1), offset1, createToString(a1), offset2, length),
-        expected, Arrays.matchesRegion(a1, offset1, a2, offset2, length));
+    assertEquals(
+        expected, Arrays.matchesRegion(a1, offset1, a2, offset2, length), getTestMessage("matchesRegion", createToString(a1), offset1, createToString(a1), offset2, length));
   }
 
   @Test
@@ -96,8 +93,8 @@ public class ArraysTest {
   }
 
   private void checkMatchesStart(byte[] a1, byte[] a2, boolean expected) {
-    assertEquals(getTestMessage("matchesStart", createToString(a1), createToString(a2)), expected,
-        Arrays.matchesStart(a1, a2));
+    assertEquals(expected,
+        Arrays.matchesStart(a1, a2), getTestMessage("matchesStart", createToString(a1), createToString(a2)));
   }
 
   @Test
@@ -122,11 +119,11 @@ public class ArraysTest {
   }
 
   private <T> void checkIndexOf(T[] a, T value, int expectedIndex) {
-    assertEquals(getTestMessage("indexOf", createToString(a), value), expectedIndex, Arrays.indexOf(a, value));
+    assertEquals(expectedIndex, Arrays.indexOf(a, value), getTestMessage("indexOf", createToString(a), value));
   }
 
   private <T> void checkContains(T[] a, T value, boolean expected) {
-    assertEquals(getTestMessage("contains", createToString(a), value), expected, Arrays.contains(a, value));
+    assertEquals(expected, Arrays.contains(a, value), getTestMessage("contains", createToString(a), value));
   }
 
   @Test
@@ -142,8 +139,8 @@ public class ArraysTest {
     int[] actualSorted = copy(a);
     Arrays.shuffleIntArray(actualSorted);
     sort(actualSorted);
-    assertArrayEquals(getTestMessage("shuffleIntArray: orig vs shuffled+sorted", "orig = " + createToString(origCopy),
-        "shuffled+sorted = " + createToString(actualSorted)), origCopy, actualSorted);
+    assertArrayEquals(origCopy, actualSorted, getTestMessage("shuffleIntArray: orig vs shuffled+sorted", "orig = " + createToString(origCopy),
+        "shuffled+sorted = " + createToString(actualSorted)));
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -169,8 +166,8 @@ public class ArraysTest {
     int[] actual = Arrays.randomUniqueIntArray(min, max);
     int[] actualSorted = copy(actual);
     sort(actualSorted);
-    assertArrayEquals(
+    assertArrayEquals(expected, actualSorted,
         getTestMessage("randomUniqueIntArray", "min = " + min, "max = " + max, "expected = " + createToString(expected),
-            "actualSorted = " + createToString(actualSorted)), expected, actualSorted);
+            "actualSorted = " + createToString(actualSorted)));
   }
 }

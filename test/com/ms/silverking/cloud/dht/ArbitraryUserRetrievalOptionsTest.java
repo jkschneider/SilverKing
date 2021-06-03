@@ -1,14 +1,6 @@
 package com.ms.silverking.cloud.dht;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Set;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.google.common.collect.ImmutableSet;
 import com.ms.silverking.cloud.dht.client.SecondaryTargetType;
@@ -20,19 +12,21 @@ import com.ms.silverking.cloud.dht.net.ProtoRetrievalMessageGroup;
 import com.ms.silverking.cloud.dht.net.protocol.RetrievalMessageFormat;
 import com.ms.silverking.cloud.dht.trace.TraceIDProvider;
 import com.ms.silverking.id.UUIDBase;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class ArbitraryUserRetrievalOptionsTest {
 
   private void assertUserOptions(byte[] testUserOpts, String expectedStr, byte[] expectedBytes) {
 
-    assertNotNull("rebuilt options should not be null", testUserOpts);
-    assertTrue("rebuilt options should not be empty", testUserOpts.length > 0);
+    assertNotNull(testUserOpts, "rebuilt options should not be null");
+    assertTrue(testUserOpts.length > 0, "rebuilt options should not be empty");
 
     String rebuiltStr = new String(testUserOpts);
-    assertEquals("rebuilt user options should match original string", expectedStr, rebuiltStr);
+    assertEquals(expectedStr, rebuiltStr, "rebuilt user options should match original string");
 
-    assertArrayEquals("rebuilt user options should match original bytes", expectedBytes, testUserOpts);
+    assertArrayEquals(expectedBytes, testUserOpts, "rebuilt user options should match original bytes");
   }
 
   @Test
@@ -53,7 +47,7 @@ public class ArbitraryUserRetrievalOptionsTest {
 
     int optsLength = RetrievalMessageFormat.getOptionsBufferLength(rebuiltOpts);
     int expectedLength = RetrievalMessageFormat.getOptionsBufferLength(opts);
-    assertEquals("options length should be preserved", expectedLength, optsLength);
+    assertEquals(expectedLength, optsLength, "options length should be preserved");
 
     byte[] rebuiltUserOpts = rebuiltOpts.getUserOptions();
     assertUserOptions(rebuiltUserOpts, usrStr, usrBytes);
@@ -82,18 +76,18 @@ public class ArbitraryUserRetrievalOptionsTest {
 
     int optsLength = RetrievalMessageFormat.getOptionsBufferLength(rebuiltOpts);
     int expectedLength = RetrievalMessageFormat.getOptionsBufferLength(opts);
-    assertEquals("options length should be preserved", expectedLength, optsLength);
+    assertEquals(expectedLength, optsLength, "options length should be preserved");
 
     assertUserOptions(rebuiltUserOpts, usrStr, usrBytes);
 
     Set<SecondaryTarget> rebuiltSecondaries = rebuiltOpts.getSecondaryTargets();
-    assertEquals("Rebuilt secondaries and original should match", rebuiltSecondaries, secondaryTargets);
+    assertEquals(rebuiltSecondaries, secondaryTargets, "Rebuilt secondaries and original should match");
   }
 
   @Test
   public void testNullUserOptionsPreserved() {
     GetOptions opts = DHTConstants.standardGetOptions;
-    assertNull("Standard options should have null user options", opts.getUserOptions());
+    assertNull(opts.getUserOptions(), "Standard options should have null user options");
 
     InternalRetrievalOptions internalOpts = new InternalRetrievalOptions(opts);
 
@@ -104,11 +98,11 @@ public class ArbitraryUserRetrievalOptionsTest {
     RetrievalOptions rebuiltOpts = ProtoRetrievalMessageGroup.getRetrievalOptions(
         message.toMessageGroup()).getRetrievalOptions();
 
-    assertNull("Rebuilt options should still be null", rebuiltOpts.getUserOptions());
+    assertNull(rebuiltOpts.getUserOptions(), "Rebuilt options should still be null");
 
     int optsLength = RetrievalMessageFormat.getOptionsBufferLength(rebuiltOpts);
     int expectedLength = RetrievalMessageFormat.getOptionsBufferLength(opts);
-    assertEquals("options length should be preserved", expectedLength, optsLength);
+    assertEquals(expectedLength, optsLength, "options length should be preserved");
 
   }
 

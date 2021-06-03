@@ -1,50 +1,18 @@
 package com.ms.silverking.cloud.dht;
 
-import static com.ms.silverking.cloud.dht.NamespaceOptions.defaultAllowLinks;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.defaultNamespaceServerSideCode;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.defaultRetentionPolicy;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.maxMaxValueSize;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.maxSegmentSize;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.minMaxValueSize;
-import static com.ms.silverking.cloud.dht.NamespaceOptions.minSegmentSize;
-import static com.ms.silverking.cloud.dht.TestUtil.goCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.goDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.ioCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.ioDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.poCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.poDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.woCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.woDiff;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultConsistencyProtocol;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultMaxValueSize;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultRevisionMode;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultSecondarySyncIntervalSeconds;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultSegmentSize;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultStorageType;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultVersionMode;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardGetOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardInvalidationOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardPutOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardWaitOptions;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.check_Setter;
-import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_SetterExceptions;
-import static com.ms.silverking.testing.AssertFunction.test_Setters;
+import static com.ms.silverking.cloud.dht.NamespaceOptions.*;
+import static com.ms.silverking.cloud.dht.TestUtil.*;
+import static com.ms.silverking.cloud.dht.common.DHTConstants.*;
+import static com.ms.silverking.testing.AssertFunction.*;
 import static com.ms.silverking.testing.Util.int_maxVal;
 import static com.ms.silverking.testing.Util.int_minVal;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ms.silverking.cloud.dht.TimeAndVersionRetentionPolicy.Mode;
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.code.ConstraintViolationException;
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class NamespaceOptionsTest {
@@ -281,7 +249,7 @@ public class NamespaceOptionsTest {
     }, ConstraintViolationException.class }, { "valueRetentionPolicy = null", new ExceptionChecker() {
       @Override
       public void check() { setValueRetentionPolicy(null); }
-    }, NullPointerException.class },
+    }, NullPointerException.class }
         // null is allowed for backwards compatibility, so commenting this out            {"namespaceServerSideCode =
         // null",          new ExceptionChecker() { @Override public void check() { setNamespaceServerSideCode(null);
         // } },         NullPointerException.class},
@@ -381,7 +349,7 @@ public class NamespaceOptionsTest {
   @Test
   public void testToStringAndParse() {
     NamespaceOptions[] testCases = { defaultNsOptions, defaultNsOptionsCopy, defaultNsOptionsAlmostCopy,
-        defaultNsOptionsDiff,
+        defaultNsOptionsDiff
         //            defaultNsOptionsNsscNull1, FIXME:bph: failing
     };
 

@@ -1,7 +1,7 @@
 package com.ms.silverking.time;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtil {
 
@@ -17,7 +17,7 @@ public class TestUtil {
       long expected = (long) testCase[0];
       AbsMillisTimeSource source = (AbsMillisTimeSource) testCase[1];
 
-      assertEquals(getTestMessage("absTimeMillis", expected, source), expected, source.absTimeMillis());
+      assertEquals(expected, source.absTimeMillis(), getTestMessage("absTimeMillis", expected, source));
     }
   }
 
@@ -27,8 +27,8 @@ public class TestUtil {
       AbsMillisTimeSource source = (AbsMillisTimeSource) testCase[1];
       long deadline = (long) testCase[2];
 
-      assertEquals(getTestMessage("relMillisRemaining", expected, source, deadline), expected,
-          source.relMillisRemaining(deadline));
+      assertEquals(expected,
+          source.relMillisRemaining(deadline), getTestMessage("relMillisRemaining", expected, source, deadline));
     }
   }
 
@@ -37,7 +37,7 @@ public class TestUtil {
       long expected = (long) testCase[0];
       AbsNanosTimeSource source = (AbsNanosTimeSource) testCase[1];
 
-      assertEquals(getTestMessage("absTimeNanos", expected, source), expected, source.absTimeNanos());
+      assertEquals(expected, source.absTimeNanos(), getTestMessage("absTimeNanos", expected, source));
     }
   }
 
@@ -46,7 +46,7 @@ public class TestUtil {
       long expected = (long) testCase[0];
       AbsNanosTimeSource source = (AbsNanosTimeSource) testCase[1];
 
-      assertEquals(getTestMessage("getNanosOriginTime", expected, source), expected, source.getNanosOriginTime());
+      assertEquals(expected, source.getNanosOriginTime(), getTestMessage("getNanosOriginTime", expected, source));
     }
   }
 }

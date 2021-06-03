@@ -1,15 +1,10 @@
 package com.ms.silverking.cloud.dht;
 
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class NamespaceServerSideCodeTest {
@@ -87,7 +82,7 @@ public class NamespaceServerSideCodeTest {
 
   @Test
   public void testToStringAndParse() {
-    NamespaceServerSideCode[] testCases = { defaultCode, defaultCodeCopy, defaultCodeAlmostCopy, defaultCodeDiff,
+    NamespaceServerSideCode[] testCases = { defaultCode, defaultCodeCopy, defaultCodeAlmostCopy, defaultCodeDiff
         //            defaultCodeNull1, FIXME:bph: all these Null tests are failing
         //            defaultCodeNull3,
         //            defaultCodeNull4,

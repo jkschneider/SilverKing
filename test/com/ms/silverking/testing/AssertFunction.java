@@ -2,7 +2,7 @@ package com.ms.silverking.testing;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
 
@@ -62,7 +62,7 @@ public class AssertFunction {
   }
 
   private static void test_HashCodeEqualsOrNotEquals(String msg, Object first, Object second, boolean expected) {
-    assertEquals(getTestMessage(msg, first, second), expected, first.hashCode() == second.hashCode());
+    assertEquals(expected, first.hashCode() == second.hashCode(), getTestMessage(msg, first, second));
   }
 
   public static void test_Equals(Object[][] testCases) {
@@ -101,6 +101,6 @@ public class AssertFunction {
   }
 
   private static void test_EqualsOrNotEquals(String msg, Object first, Object second, boolean expected) {
-    assertEquals(getTestMessage(msg, first, second), expected, first.equals(second));
+    assertEquals(expected, first.equals(second), getTestMessage(msg, first, second));
   }
 }

@@ -1,20 +1,19 @@
 package com.ms.silverking.cloud.zookeeper;
 
-import static org.junit.Assert.assertFalse;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.ms.silverking.SKTestConfiguration;
 import com.ms.silverking.cloud.meta.MetaPathsBase;
 import com.ms.silverking.id.UUIDBase;
 import com.ms.silverking.log.Log;
 import com.ms.silverking.util.PropertiesHelper;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ZooKeeperExtendedTest implements Watcher {
   private final ZooKeeperExtended zk;

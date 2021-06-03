@@ -1,8 +1,6 @@
 package com.ms.silverking.cloud.dht;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.HashSet;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.VersionConstraint.Mode;
 import com.ms.silverking.cloud.dht.client.ChecksumType;
@@ -14,8 +12,9 @@ import com.ms.silverking.cloud.dht.common.DHTConstants;
 import com.ms.silverking.cloud.dht.common.DHTKey;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.KeyLevelValueRetentionPolicyImpl;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionPolicyImpl;
-import com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionState;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionPolicyImpl.ImplementationType;
+import com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionState;
+import java.util.HashSet;
 
 @OmitGeneration
 public class TestUtil {
@@ -27,7 +26,7 @@ public class TestUtil {
       Compression.LZ4, ChecksumType.MURMUR3_32, false, 0, 0, PutOptions.noLock,
       DHTConstants.defaultFragmentationThreshold, null);
 
-  public static final InvalidationOptions ioCopy = new InvalidationOptions(new OpSizeBasedTimeoutController(), null, 
+  public static final InvalidationOptions ioCopy = new InvalidationOptions(new OpSizeBasedTimeoutController(), null,
       0, 0, PutOptions.noLock);
   public static final InvalidationOptions ioDiff = new InvalidationOptions(new WaitForTimeoutController(),
       new HashSet<>(), 0, 0, PutOptions.noLock);

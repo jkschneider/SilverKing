@@ -1,22 +1,18 @@
 package com.ms.silverking.collection;
 
-import static com.ms.silverking.collection.TestUtil.key1;
-import static com.ms.silverking.collection.TestUtil.value1;
-import static com.ms.silverking.collection.TestUtil.value2;
+import static com.ms.silverking.collection.TestUtil.*;
 import static com.ms.silverking.testing.Assert.checkEqualsEmptySet;
 import static com.ms.silverking.testing.Assert.checkEqualsSetOne;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 
 public class ConcurrentSingleMapTest {
 
   private ConcurrentSingleMap<Integer, Integer> map;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     clearMap();
   }

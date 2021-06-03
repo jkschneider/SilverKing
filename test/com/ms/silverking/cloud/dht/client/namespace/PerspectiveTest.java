@@ -4,8 +4,8 @@ import static com.ms.silverking.cloud.dht.client.namespace.version.TestUtil.*;
 
 import java.io.IOException;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.ms.silverking.cloud.dht.GetOptions;
 import com.ms.silverking.cloud.dht.NamespaceVersionMode;
@@ -31,7 +31,7 @@ public class PerspectiveTest {
     private static DHTSession session;
     private static final String namespaceName = "PerspectiveTest";
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws ClientException, IOException {
         session = createSession();
     }

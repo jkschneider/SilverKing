@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.zookeeper.KeeperException;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 import com.google.common.collect.ImmutableSet;
 import com.ms.silverking.cloud.dht.client.ClientDHTConfiguration;
@@ -31,7 +31,7 @@ import com.ms.silverking.thread.lwt.LWTPoolProvider;
 public abstract class DHTNodeTestUtil extends LocalZkServerTestSuite {
   private static Path tempDir;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUp() throws IOException {
     System.setProperty(DHTConstants.enablePendingPutsProperty, "false");
     // 0) Create LWT work pools
@@ -39,7 +39,7 @@ public abstract class DHTNodeTestUtil extends LocalZkServerTestSuite {
     tempDir = Files.createTempDirectory(null);
   }
 
-  @AfterClass
+  @AfterAll
   public static void stop() {
     Log.warning("Stopping all global DHTNode processes");
     WatcherBase.stopProcessRunner();

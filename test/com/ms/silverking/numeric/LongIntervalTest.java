@@ -1,7 +1,7 @@
 package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
@@ -25,12 +25,12 @@ public class LongIntervalTest {
       checkGetter("getStart", interval, start, interval.getStart());
       checkGetter("getEnd", interval, end, interval.getEnd());
       checkGetter("getSize", interval, size, interval.getSize());
-      assertEquals(getTestMessage("toString"), "[" + start + "," + end + "]", interval.toString());
+      assertEquals("[" + start + "," + end + "]", interval.toString(), getTestMessage("toString"));
     }
   }
 
   private void checkGetter(String name, LongInterval interval, long expected, long actual) {
-    assertEquals(getTestMessage(name, interval), expected, actual);
+    assertEquals(expected, actual, getTestMessage(name, interval));
   }
 
   @Test
@@ -61,6 +61,6 @@ public class LongIntervalTest {
   }
 
   private void checkEquals(LongInterval l1, LongInterval l2, boolean expected) {
-    assertEquals(getTestMessage("equals", l1, l2), expected, l1.equals(l2));
+    assertEquals(expected, l1.equals(l2), getTestMessage("equals", l1, l2));
   }
 }

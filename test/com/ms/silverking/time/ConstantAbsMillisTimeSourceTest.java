@@ -9,7 +9,7 @@ import static com.ms.silverking.time.TestUtil.constantSource;
 import static com.ms.silverking.time.TestUtil.test_AbsTimeMillis;
 import static com.ms.silverking.time.TestUtil.test_RelMillisRemaining;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConstantAbsMillisTimeSourceTest {
 

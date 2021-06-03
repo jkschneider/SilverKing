@@ -1,7 +1,7 @@
 package com.ms.silverking.collection;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class TupleTest {
   @Test
@@ -10,7 +10,7 @@ public class TupleTest {
 
     t = new Pair<>(0, 1);
     for (int i = 0; i < t.getSize(); i++) {
-      Assert.assertEquals(i, t.getElement(i));
+      Assertions.assertEquals(i, t.getElement(i));
     }
   }
 
@@ -20,7 +20,7 @@ public class TupleTest {
 
     t = new Triple<>(0, 1, 2);
     for (int i = 0; i < t.getSize(); i++) {
-      Assert.assertEquals(i, t.getElement(i));
+      Assertions.assertEquals(i, t.getElement(i));
     }
   }
 
@@ -30,7 +30,7 @@ public class TupleTest {
 
     q = new Quadruple<>(0, 1, 2, 3);
     for (int i = 0; i < q.getSize(); i++) {
-      Assert.assertEquals(i, q.getElement(i));
+      Assertions.assertEquals(i, q.getElement(i));
     }
   }
 }

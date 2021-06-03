@@ -1,14 +1,14 @@
 package com.ms.silverking.cloud.dht.client.impl;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import com.ms.silverking.cloud.dht.client.AsyncOperation;
 import com.ms.silverking.cloud.dht.client.OpSizeBasedTimeoutControllerTest;
 import com.ms.silverking.cloud.dht.client.SimpleTimeoutControllerTest;
 import com.ms.silverking.cloud.dht.client.WaitForTimeoutControllerTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class OpTimeoutStateTest {
 
@@ -48,7 +48,7 @@ public class OpTimeoutStateTest {
       int expected = (int) testCase[0];
       OpTimeoutState state = (OpTimeoutState) testCase[1];
 
-      assertEquals(getTestMessage("opHasTimedOut", state), expected, state.getCurRelTimeoutMillis());
+      assertEquals(expected, state.getCurRelTimeoutMillis(), getTestMessage("opHasTimedOut", state));
     }
   }
 
@@ -61,7 +61,7 @@ public class OpTimeoutStateTest {
         { opSizeBasedTimeoutState, (long) opSizeBasedTimeoutController_defaultNonKeyedOpMaxRelTimeout_ms + 1, true },
         { simpleTimeoutState, zeroTimeMillis, false },
         { simpleTimeoutState, (long) simpleTimeoutController_defaultMaxRelativeTimeoutMillis, false },
-        { simpleTimeoutState, (long) simpleTimeoutController_defaultMaxRelativeTimeoutMillis + 1, true },
+        { simpleTimeoutState, (long) simpleTimeoutController_defaultMaxRelativeTimeoutMillis + 1, true }
         //            {waitForTimeoutState,     zeroTimeMillis,
         //            false},    // NPE if AsyncOperation param is null, testing with null b/c it's too much work to
         //            create an actual AsyncOperation...
@@ -95,12 +95,12 @@ public class OpTimeoutStateTest {
       for (int i = 0; i < maxAttempts; i++)
         state.newAttempt(zeroTimeMillis);
 
-      assertEquals(getTestMessage("newAttemptAllowed", state, zeroTimeMillis), expected, state.newAttemptAllowed(mockOp));
+      assertEquals(expected, state.newAttemptAllowed(mockOp), getTestMessage("newAttemptAllowed", state, zeroTimeMillis));
     }
   }
 
   private void checkOpHasTimedOut(boolean expected, OpTimeoutState state, long curTimeMillis) {
-    assertEquals(getTestMessage("opHasTimedOut", state, curTimeMillis), expected, state.opHasTimedOut(curTimeMillis));
+    assertEquals(expected, state.opHasTimedOut(curTimeMillis), getTestMessage("opHasTimedOut", state, curTimeMillis));
   }
 
   @Test
@@ -120,8 +120,8 @@ public class OpTimeoutStateTest {
       long curTimeMillis = (long) testCase[1];
       boolean expected = (boolean) testCase[2];
 
-      assertEquals(getTestMessage("attemptHasTimedOut", state, curTimeMillis), expected,
-          state.attemptHasTimedOut(curTimeMillis));
+      assertEquals(expected,
+          state.attemptHasTimedOut(curTimeMillis), getTestMessage("attemptHasTimedOut", state, curTimeMillis));
     }
   }
 
@@ -144,8 +144,8 @@ public class OpTimeoutStateTest {
       long curTimeMillis = (long) testCase[1];
       boolean expected = (boolean) testCase[2];
 
-      assertEquals(getTestMessage("retryOnExclusionChange", state, curTimeMillis), expected,
-          state.retryOnExclusionChange(curTimeMillis));
+      assertEquals(expected,
+          state.retryOnExclusionChange(curTimeMillis), getTestMessage("retryOnExclusionChange", state, curTimeMillis));
     }
   }
 

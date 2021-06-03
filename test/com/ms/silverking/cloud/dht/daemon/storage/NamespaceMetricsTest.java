@@ -1,6 +1,6 @@
 package com.ms.silverking.cloud.dht.daemon.storage;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NamespaceMetricsTest {
   @Test

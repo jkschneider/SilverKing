@@ -1,11 +1,11 @@
 package com.ms.silverking.collection;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FibPriorityQueueTest {
 
@@ -50,11 +50,13 @@ public class FibPriorityQueueTest {
     assertEquals("def", fpq.poll());
   }
 
-  @Test(expected = NoSuchElementException.class)
+  @Test
   public void testEmptyIterator() {
-    FibPriorityQueue<Long> fpq = new FibPriorityQueue<>();
-    Iterator<Long> emptyIt = fpq.iterator();
-    emptyIt.next();
+    assertThrows(NoSuchElementException.class, () -> {
+      FibPriorityQueue<Long> fpq = new FibPriorityQueue<>();
+      Iterator<Long> emptyIt = fpq.iterator();
+      emptyIt.next();
+    });
   }
 
   @Test
@@ -91,15 +93,17 @@ public class FibPriorityQueueTest {
     assertEquals(0, fpq.size());
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void testRemove() {
-    FibPriorityQueue<String> fpq = new FibPriorityQueue<>();
-    fpq.add("a", 1D);
-    fpq.add("b", 2D);
-    fpq.add("c", 3D);
-    fpq.add("d", 4D);
-    fpq.add("e", 5D);
-    assertEquals(5, fpq.size());
-    fpq.remove("a");
+    assertThrows(UnsupportedOperationException.class, () -> {
+      FibPriorityQueue<String> fpq = new FibPriorityQueue<>();
+      fpq.add("a", 1D);
+      fpq.add("b", 2D);
+      fpq.add("c", 3D);
+      fpq.add("d", 4D);
+      fpq.add("e", 5D);
+      assertEquals(5, fpq.size());
+      fpq.remove("a");
+    });
   }
 }

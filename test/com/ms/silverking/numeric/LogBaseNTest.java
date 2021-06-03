@@ -2,9 +2,9 @@ package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Util.double_nan;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LogBaseNTest {
 
@@ -27,10 +27,10 @@ public class LogBaseNTest {
   }
 
   private void checkLog(LogBaseN base, double x, double expected) {
-    assertEquals(getTestMessage("getMostSignificantBits", "x = " + x), expected, base.log(x), 0.0);
+    assertEquals(expected, base.log(x), 0.0, getTestMessage("getMostSignificantBits", "x = " + x));
   }
 
   private void checkToString(LogBaseN baseN, String expected) {
-    assertEquals(getTestMessage("toString"), expected, baseN.toString());
+    assertEquals(expected, baseN.toString(), getTestMessage("toString"));
   }
 }

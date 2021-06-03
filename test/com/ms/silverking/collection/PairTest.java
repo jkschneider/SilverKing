@@ -1,17 +1,8 @@
 package com.ms.silverking.collection;
 
-import static com.ms.silverking.collection.TestUtil.expectedDoubleValue;
-import static com.ms.silverking.collection.TestUtil.expectedIntValue;
-import static com.ms.silverking.collection.TestUtil.expectedIntValue2;
-import static com.ms.silverking.collection.TestUtil.expectedStringValue;
-import static com.ms.silverking.collection.TestUtil.pD;
-import static com.ms.silverking.collection.TestUtil.pI;
-import static com.ms.silverking.collection.TestUtil.pIS;
-import static com.ms.silverking.collection.TestUtil.pM;
-import static com.ms.silverking.collection.TestUtil.pS;
-import static com.ms.silverking.collection.TestUtil.pSI;
+import static com.ms.silverking.collection.TestUtil.*;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
@@ -38,11 +29,11 @@ public class PairTest {
   }
 
   private void checkV1(Pair<?, ?> p, Object expectedValue) {
-    assertEquals(getTestMessage("v1", p), expectedValue, p.getV1());
+    assertEquals(expectedValue, p.getV1(), getTestMessage("v1", p));
   }
 
   private void checkV2(Pair<?, ?> p, Object expectedValue) {
-    assertEquals(getTestMessage("v2", p), expectedValue, p.getV2());
+    assertEquals(expectedValue, p.getV2(), getTestMessage("v2", p));
   }
 
   @Test(expected = ClassCastException.class)
@@ -65,6 +56,6 @@ public class PairTest {
   }
 
   private void checkEquals(Pair<?, ?> p1, Pair<?, ?> p2, boolean expected) {
-    assertEquals(getTestMessage("pairs are equal", p1, p2), expected, p1.equals(p2));
+    assertEquals(expected, p1.equals(p2), getTestMessage("pairs are equal", p1, p2));
   }
 }

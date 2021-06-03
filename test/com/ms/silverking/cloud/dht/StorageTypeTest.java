@@ -1,13 +1,10 @@
 package com.ms.silverking.cloud.dht;
 
-import static com.ms.silverking.cloud.dht.StorageType.FILE;
-import static com.ms.silverking.cloud.dht.StorageType.FILE_SYNC;
-import static com.ms.silverking.cloud.dht.StorageType.RAM;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import static com.ms.silverking.cloud.dht.StorageType.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class StorageTypeTest {

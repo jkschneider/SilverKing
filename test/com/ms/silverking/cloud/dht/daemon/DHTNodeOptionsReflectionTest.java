@@ -1,14 +1,14 @@
 package com.ms.silverking.cloud.dht.daemon;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ms.silverking.cloud.dht.daemon.storage.LRUReapPolicy;
 import com.ms.silverking.cloud.dht.daemon.storage.NeverReapPolicy;
 import com.ms.silverking.cloud.dht.daemon.storage.ReapOnIdlePolicy;
 import com.ms.silverking.cloud.dht.daemon.storage.ReapPolicy;
 import com.ms.silverking.text.ObjectDefParser2;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DHTNodeOptionsReflectionTest {
 

@@ -1,18 +1,17 @@
 package com.ms.silverking.collection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.NoSuchElementException;
-
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 
 public class ConcurrentLinkedDequeWithSizeTest {
 
   private ConcurrentLinkedDequeWithSize<Integer> deque;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     clearDeque();
   }

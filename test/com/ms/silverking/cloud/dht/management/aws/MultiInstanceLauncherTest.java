@@ -1,15 +1,14 @@
 package com.ms.silverking.cloud.dht.management.aws;
 
 import static com.ms.silverking.testing.AssertFunction.test_SetterExceptions;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import com.ms.silverking.testing.Util.ExceptionChecker;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MultiInstanceLauncherTest {
 

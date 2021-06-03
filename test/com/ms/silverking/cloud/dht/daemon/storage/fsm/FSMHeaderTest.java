@@ -2,9 +2,8 @@ package com.ms.silverking.cloud.dht.daemon.storage.fsm;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class FSMHeaderTest {
   @Test
@@ -31,6 +30,6 @@ public class FSMHeaderTest {
     System.out.println();
     System.out.printf("%s\n", h2);
 
-    Assert.assertEquals(h.toString(), h2.toString());
+    Assertions.assertEquals(h.toString(), h2.toString());
   }
 }

@@ -1,11 +1,6 @@
 package com.ms.silverking.cloud.dht.client.impl;
 
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.util.HashMap;
-import java.util.Map;
+import static org.mockito.Mockito.*;
 
 import com.ms.silverking.cloud.dht.client.FailureCause;
 import com.ms.silverking.cloud.dht.client.KeyedOperationException;
@@ -15,15 +10,17 @@ import com.ms.silverking.cloud.dht.client.StoredValue;
 import com.ms.silverking.thread.lwt.BaseWorker;
 import com.ms.silverking.thread.lwt.LWTPool;
 import com.ms.silverking.thread.lwt.LWTPoolProvider;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AsyncRetrievalOperationImplTest {
 
     AsyncRetrievalOperationImpl<String, String> retrievalOperationMock;
 
-    @Before
+    @BeforeEach
     public void init() {
         BaseWorker.class.getClassLoader().setClassAssertionStatus(BaseWorker.class.getName(), false);
         LWTPoolProvider.defaultNonConcurrentWorkPool = mock(LWTPool.class);
@@ -33,7 +30,7 @@ public class AsyncRetrievalOperationImplTest {
         when(retrievalOperationMock.getPartialResults()).thenReturn(new HashMap<String, StoredValue>());
     }
 
-    @After
+    @AfterEach
     public void finalize() {
         BaseWorker.class.getClassLoader().setClassAssertionStatus(BaseWorker.class.getName(), true);
         LWTPoolProvider.defaultNonConcurrentWorkPool = null;

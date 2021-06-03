@@ -2,9 +2,9 @@ package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Util.createToString;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EntropyCalculatorTest {
 
@@ -26,7 +26,7 @@ public class EntropyCalculatorTest {
   }
 
   private void checkComputeEntropy(byte[] input, double expected) {
-    assertEquals(getTestMessage("computeEntropy", "input = " + createToString(input)), expected,
-        EntropyCalculator.computeEntropy(input), 0.0);
+    assertEquals(expected,
+        EntropyCalculator.computeEntropy(input), 0.0, getTestMessage("computeEntropy", "input = " + createToString(input)));
   }
 }

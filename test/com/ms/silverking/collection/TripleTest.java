@@ -1,17 +1,10 @@
 package com.ms.silverking.collection;
 
-import static com.ms.silverking.collection.TestUtil.expectedDoubleValue;
-import static com.ms.silverking.collection.TestUtil.expectedIntValue;
-import static com.ms.silverking.collection.TestUtil.expectedIntValue2;
-import static com.ms.silverking.collection.TestUtil.expectedStringValue;
-import static com.ms.silverking.collection.TestUtil.pD;
-import static com.ms.silverking.collection.TestUtil.pI;
-import static com.ms.silverking.collection.TestUtil.pS;
-import static com.ms.silverking.collection.TestUtil.pSI;
+import static com.ms.silverking.collection.TestUtil.*;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TripleTest {
 
@@ -61,15 +54,15 @@ public class TripleTest {
   }
 
   private void checkV1(Triple<?, ?, ?> t, Object expectedValue) {
-    assertEquals(getTestMessage("v1", t), expectedValue, t.getV1());
+    assertEquals(expectedValue, t.getV1(), getTestMessage("v1", t));
   }
 
   private void checkV2(Triple<?, ?, ?> t, Object expectedValue) {
-    assertEquals(getTestMessage("v2", t), expectedValue, t.getV2());
+    assertEquals(expectedValue, t.getV2(), getTestMessage("v2", t));
   }
 
   private void checkV3(Triple<?, ?, ?> t, Object expectedValue) {
-    assertEquals(getTestMessage("v3", t), expectedValue, t.getV3());
+    assertEquals(expectedValue, t.getV3(), getTestMessage("v3", t));
   }
 
   @Test
@@ -88,7 +81,7 @@ public class TripleTest {
   }
 
   private void checkEquals(Triple<?, ?, ?> t1, Triple<?, ?, ?> t2, boolean expected) {
-    assertEquals(getTestMessage("Triples are equal", t1, t2), expected, t1.equals(t2));
+    assertEquals(expected, t1.equals(t2), getTestMessage("Triples are equal", t1, t2));
   }
 
   @Test
@@ -105,7 +98,7 @@ public class TripleTest {
   }
 
   private void checkHead(Triple<?, ?, ?> t, Object expectedValue) {
-    assertEquals(getTestMessage("Head", t), expectedValue, t.getHead());
+    assertEquals(expectedValue, t.getHead(), getTestMessage("Head", t));
   }
 
   @Test
@@ -122,6 +115,6 @@ public class TripleTest {
   }
 
   private void checkTail(Triple<?, ?, ?> t, Pair<?, ?> expected) {
-    assertEquals(getTestMessage("Tail", t), expected, t.getTail());
+    assertEquals(expected, t.getTail(), getTestMessage("Tail", t));
   }
 }

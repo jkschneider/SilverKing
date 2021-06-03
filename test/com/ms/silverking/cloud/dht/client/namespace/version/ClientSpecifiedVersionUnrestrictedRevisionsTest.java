@@ -4,8 +4,8 @@ import static com.ms.silverking.cloud.dht.client.namespace.version.TestUtil.*;
 
 import java.io.IOException;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static com.ms.silverking.cloud.dht.NamespaceVersionMode.*;
 import static com.ms.silverking.cloud.dht.RevisionMode.*;
@@ -25,7 +25,7 @@ public class ClientSpecifiedVersionUnrestrictedRevisionsTest {
 
     private static final String namespaceName = ClientSpecifiedVersionUnrestrictedRevisionsTest.class.getSimpleName();
     
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws ClientException, IOException {
         DHTSession session = createSession();
         Namespace ns       = createNamespace(session, namespaceName, CLIENT_SPECIFIED, UNRESTRICTED_REVISIONS); 

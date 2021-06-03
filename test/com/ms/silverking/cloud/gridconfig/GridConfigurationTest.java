@@ -2,21 +2,17 @@ package com.ms.silverking.cloud.gridconfig;
 
 import static com.ms.silverking.cloud.gridconfig.GridConfiguration.defaultBaseProperty;
 import static com.ms.silverking.cloud.gridconfig.GridConfiguration.envSuffixProperty;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
+import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
+import com.ms.silverking.testing.Util;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.After;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
-
-import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
-import com.ms.silverking.testing.Util;
 
 @OmitGeneration
 public class GridConfigurationTest {
@@ -27,26 +23,26 @@ public class GridConfigurationTest {
     private static final String gcGoodName = "gc_good";
     private final File gcBad  = Util.getFile(getClass(), testFilesDirName, gcBadName  + envSuffix);
     private final File gcGood = Util.getFile(getClass(), testFilesDirName, gcGoodName + envSuffix);
-    
+
     private static GridConfiguration nullGridConfig;
-    
+
     private static Map<String, String> gcBadMap;
     private static Map<String, String> gcGoodMap;
-    
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpBeforeClass() throws Exception {
         nullGridConfig = new GridConfiguration(null, null);
-        
+
         gcBadMap = new HashMap<>();
         gcBadMap.put("GC_SK_PORT",   "8889");
-        
+
         gcGoodMap = new HashMap<>();
         gcGoodMap.put("GC_SK_NAME",   "sk");
         gcGoodMap.put("GC_SK_ZK_LOC", "host:9981");
         gcGoodMap.put("GC_SK_PORT",   "8889");
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         System.clearProperty(defaultBaseProperty);
         System.clearProperty(envSuffixProperty);
@@ -59,7 +55,7 @@ public class GridConfigurationTest {
 //        Util.printName("testStaticInitalizer_NoDefaultBasePropertyOrEnvVar");
         init();
     }
-    
+
 //    @Test
 //    public void testStaticInitalizer_DefaultBasePropertyIsNull() {
 //        setBasePropertyAndInit(null);    // won't work because map won't accept null values, so leaving this testcase commented out just for reference
@@ -76,7 +72,7 @@ public class GridConfigurationTest {
 //        Util.printName("testStaticInitalizer_DefaultBaseValLengthIsZero");
         setBasePropertyAndInit("");
     }
-    
+
     @Test
     public void testStaticInitalizer_DefaultBaseValTrimLengthIsZero() {
 //        Util.printName("testStaticInitalizer_DefaultBaseValTrimLengthIsZero");
@@ -88,65 +84,65 @@ public class GridConfigurationTest {
 //        Util.printName("testStaticInitalizer_DefaultBasePropertyNotNull");
         setBasePropertyAndInit("a");
     }
-    
+
     @Test
     public void testStaticInitalizer_EnvSuffixPropertyNotNull() {
 //        Util.printName("testStaticInitalizer_EnvSuffixPropertyNotNull");
         setEnvSuffixProperty("a");
         init();
     }
-    
+
     @Test(expected=RuntimeException.class)
     public void testGetDefaultBase_DefaultBaseValLengthIsZero() {
 //        Util.printName("testGetDefaultBase_DefaultBaseValLengthIsZero");
         setBasePropertyAndInitAndGet("");
     }
-    
+
     @Test(expected=RuntimeException.class)
     public void testGetDefaultBase_DefaultBaseValTrimLengthIsZero() {
 //        Util.printName("testGetDefaultBase_DefaultBaseValTrimLengthIsZero");
         setBasePropertyAndInitAndGet("    ");
     }
-    
+
     @Test
     public void testGetDefaultBase_DefaultBasePropertyNotNull() {
 //        Util.printName("testGetDefaultBase_DefaultBasePropertyNotNull");
         setBasePropertyAndInitAndGet("a");
     }
-    
+
     private static void setBasePropertyAndInit(String value) {
         setBaseProperty(value);
         init();
     }
-    
+
     private static void setBasePropertyAndInitAndGet(String value) {
         setBaseProperty(value);
         initAndGetDefaultBase();
     }
-    
+
     private static void setBaseProperty(String value) {
         setProperty(defaultBaseProperty, value);
     }
-    
+
     private static void setEnvSuffixProperty(String value) {
         setProperty(envSuffixProperty, value);
     }
-    
+
     private static void init() {
         GridConfiguration.staticInit();
     }
-    
+
     private static void initAndGetDefaultBase() {
         init();
         GridConfiguration.getDefaultBase();
     }
-    
+
     private static void setProperty(String key, String value) {
 //        System.out.println("setting: " + key + " to " + value );
         System.setProperty(key, value);
 //        System.out.println("set");
     }
-    
+
     @Test(expected=NullPointerException.class)
     public void testNullObj_toEnvString() {
 //        Util.printName("testNullObj_toEnvString");
@@ -162,7 +158,7 @@ public class GridConfigurationTest {
     @Test
     public void testCtors_Actual() {
 //        Util.printName("testCtors_Actual");
-        assertNull(nullGridConfig.getName());    
+        assertNull(nullGridConfig.getName());
         assertNull(nullGridConfig.getEnvMap());
         assertEquals("null", nullGridConfig.toString());
     }
@@ -175,7 +171,7 @@ public class GridConfigurationTest {
         checkParseFile(gcBad.getParentFile(),  gcBadName,  gcBadMap);
         checkParseFile(gcGood.getParentFile(), gcGoodName, gcGoodMap);
     }
-    
+
     private void checkParseFile(File gcBase, String gcName, Map<String, String> expectedMap) {
         try {
             assertEquals(new GridConfiguration(gcName, expectedMap), GridConfiguration.parseFile(gcBase, gcName));
@@ -184,14 +180,14 @@ public class GridConfigurationTest {
             fail(e.getMessage());
         }
     }
-    
+
     @Test
     public void testReadEnvFile() {
 //        Util.printName("testReadEnvFile");
         checkReadEnvFile(gcBad,  gcBadMap);
         checkReadEnvFile(gcGood, gcGoodMap);
     }
-    
+
     private void checkReadEnvFile(File f, Map<String, String> expectedMap) {
         try {
             assertEquals(expectedMap, GridConfiguration.readEnvFile(f));
@@ -200,7 +196,7 @@ public class GridConfigurationTest {
             fail(e.getMessage());
         }
     }
-    
+
     public static void main(String[] args) {
         Util.runTests(GridConfigurationTest.class);
     }

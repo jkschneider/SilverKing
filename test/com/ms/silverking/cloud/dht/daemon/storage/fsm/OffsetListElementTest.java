@@ -5,8 +5,8 @@ import com.ms.silverking.cloud.dht.common.DHTConstants;
 import com.ms.silverking.cloud.dht.daemon.storage.OffsetList;
 import com.ms.silverking.cloud.dht.daemon.storage.OffsetListStore;
 import com.ms.silverking.cloud.dht.daemon.storage.RAMOffsetListStore;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class OffsetListElementTest {
   private static final int numOffsetLists = 100;
@@ -37,7 +37,7 @@ public class OffsetListElementTest {
 
         offset = ols1.getOffsetList(i + 1).getOffset(VersionConstraint.exactMatch(j), null);
         //System.out.printf("%d\t%d\t%d\n", i, j, offset);
-        Assert.assertEquals(j, offset);
+        Assertions.assertEquals(j, offset);
       }
     }
   }

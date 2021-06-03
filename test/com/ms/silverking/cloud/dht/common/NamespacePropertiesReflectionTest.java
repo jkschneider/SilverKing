@@ -1,10 +1,7 @@
 package com.ms.silverking.cloud.dht.common;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ms.silverking.cloud.dht.ConsistencyProtocol;
 import com.ms.silverking.cloud.dht.LRURetentionPolicy;
@@ -15,7 +12,7 @@ import com.ms.silverking.cloud.dht.RevisionMode;
 import com.ms.silverking.cloud.dht.StorageType;
 import com.ms.silverking.cloud.dht.daemon.storage.serverside.LRUTrigger;
 import com.ms.silverking.cloud.dht.trace.NoTraceIDProvider;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class NamespacePropertiesReflectionTest {
   private static final long nanosPerMilli = 1000000;
@@ -40,17 +37,17 @@ public class NamespacePropertiesReflectionTest {
     String skDef = initialized.toString();
     NamespaceProperties parsed = NamespaceProperties.parse(skDef);
     String testName = "reflectionFull";
-    assertTrue(getTestMessage(testName, "reflection.hasCreationTime() shall be true for full initialization"),
-        initialized.hasCreationTime());
-    assertTrue(getTestMessage(testName, "reflection.hasCreationTime() shall be true for full initialization"),
-        parsed.hasCreationTime());
-    assertTrue(getTestMessage(testName, "reflection.hasName() shall be true for full initialization"),
-        initialized.hasName());
-    assertTrue(getTestMessage(testName, "reflection.hasName() shall be true for full initialization"),
-        parsed.hasName());
-    assertEquals(getTestMessage(testName, "reflection shall work for full initialization"), initialized, parsed);
-    assertEquals(getTestMessage(testName, "reflection.toString shall work for full initialization"), skDef,
-        parsed.toString());
+    assertTrue(
+        initialized.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be true for full initialization"));
+    assertTrue(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be true for full initialization"));
+    assertTrue(
+        initialized.hasName(), getTestMessage(testName, "reflection.hasName() shall be true for full initialization"));
+    assertTrue(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be true for full initialization"));
+    assertEquals(initialized, parsed, getTestMessage(testName, "reflection shall work for full initialization"));
+    assertEquals(skDef,
+        parsed.toString(), getTestMessage(testName, "reflection.toString shall work for full initialization"));
   }
 
   @Test
@@ -60,17 +57,17 @@ public class NamespacePropertiesReflectionTest {
     String skDef = initialized.toString();
     NamespaceProperties parsed = NamespaceProperties.parse(skDef);
     String testName = "reflectionNoCreationTime";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        initialized.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertTrue(getTestMessage(testName, "reflection.hasName() shall be true for partial initialization"),
-        initialized.hasName());
-    assertTrue(getTestMessage(testName, "reflection.hasName() shall be true for partial initialization"),
-        parsed.hasName());
-    assertEquals(getTestMessage(testName, "reflection shall work for partial initialization"), initialized, parsed);
-    assertEquals(getTestMessage(testName, "reflection.toString shall work for partial initialization"), skDef,
-        parsed.toString());
+    assertFalse(
+        initialized.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertTrue(
+        initialized.hasName(), getTestMessage(testName, "reflection.hasName() shall be true for partial initialization"));
+    assertTrue(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be true for partial initialization"));
+    assertEquals(initialized, parsed, getTestMessage(testName, "reflection shall work for partial initialization"));
+    assertEquals(skDef,
+        parsed.toString(), getTestMessage(testName, "reflection.toString shall work for partial initialization"));
   }
 
   @Test
@@ -80,17 +77,17 @@ public class NamespacePropertiesReflectionTest {
     String skDef = initialized.toString();
     NamespaceProperties parsed = NamespaceProperties.parse(skDef);
     String testName = "reflectionNoName";
-    assertTrue(getTestMessage(testName, "reflection.hasCreationTime() shall be true for partial initialization"),
-        initialized.hasCreationTime());
-    assertTrue(getTestMessage(testName, "reflection.hasCreationTime() shall be true for partial initialization"),
-        parsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        initialized.hasName());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        parsed.hasName());
-    assertEquals(getTestMessage(testName, "reflection shall work for partial initialization"), initialized, parsed);
-    assertEquals(getTestMessage(testName, "reflection.toString shall work for partial initialization"), skDef,
-        parsed.toString());
+    assertTrue(
+        initialized.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be true for partial initialization"));
+    assertTrue(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be true for partial initialization"));
+    assertFalse(
+        initialized.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertEquals(initialized, parsed, getTestMessage(testName, "reflection shall work for partial initialization"));
+    assertEquals(skDef,
+        parsed.toString(), getTestMessage(testName, "reflection.toString shall work for partial initialization"));
   }
 
   @Test
@@ -100,17 +97,17 @@ public class NamespacePropertiesReflectionTest {
     String skDef = initialized.toString();
     NamespaceProperties parsed = NamespaceProperties.parse(skDef);
     String testName = "reflectionNoCreationTimeNoName1";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        initialized.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        initialized.hasName());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        parsed.hasName());
-    assertEquals(getTestMessage(testName, "reflection shall work for partial initialization"), initialized, parsed);
-    assertEquals(getTestMessage(testName, "reflection.toString shall work for partial initialization"), skDef,
-        parsed.toString());
+    assertFalse(
+        initialized.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        initialized.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertEquals(initialized, parsed, getTestMessage(testName, "reflection shall work for partial initialization"));
+    assertEquals(skDef,
+        parsed.toString(), getTestMessage(testName, "reflection.toString shall work for partial initialization"));
   }
 
   @Test
@@ -120,29 +117,29 @@ public class NamespacePropertiesReflectionTest {
     String skDef = initialized.toString();
     NamespaceProperties parsed = NamespaceProperties.parse(skDef);
     String testName = "reflectionNoCreationTimeNoName2";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        initialized.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        initialized.hasName());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        parsed.hasName());
-    assertEquals(getTestMessage(testName, "reflection shall work for partial initialization"), initialized, parsed);
-    assertEquals(getTestMessage(testName, "reflection.toString shall work for partial initialization"), skDef,
-        parsed.toString());
+    assertFalse(
+        initialized.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        initialized.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
+    assertEquals(initialized, parsed, getTestMessage(testName, "reflection shall work for partial initialization"));
+    assertEquals(skDef,
+        parsed.toString(), getTestMessage(testName, "reflection.toString shall work for partial initialization"));
   }
 
   private void testDefaultOperationOptionsTraceIDProvider(String testName, NamespaceProperties parsed) {
     NamespaceOptions nsOptions = parsed.getOptions();
-    assertTrue(getTestMessage(testName, "DefaultPutOptions shall use NoTraceIDProvider"),
-        nsOptions.getDefaultPutOptions().getTraceIDProvider() instanceof NoTraceIDProvider);
-    assertTrue(getTestMessage(testName, "DefaultGetOptions shall use NoTraceIDProvider"),
-        nsOptions.getDefaultGetOptions().getTraceIDProvider() instanceof NoTraceIDProvider);
-    assertTrue(getTestMessage(testName, "DefaultWaitOptions shall use NoTraceIDProvider"),
-        nsOptions.getDefaultWaitOptions().getTraceIDProvider() instanceof NoTraceIDProvider);
-    assertTrue(getTestMessage(testName, "DefaultInvalidationOptions shall use NoTraceIDProvider"),
-        nsOptions.getDefaultInvalidationOptions().getTraceIDProvider() instanceof NoTraceIDProvider);
+    assertTrue(
+        nsOptions.getDefaultPutOptions().getTraceIDProvider() instanceof NoTraceIDProvider, getTestMessage(testName, "DefaultPutOptions shall use NoTraceIDProvider"));
+    assertTrue(
+        nsOptions.getDefaultGetOptions().getTraceIDProvider() instanceof NoTraceIDProvider, getTestMessage(testName, "DefaultGetOptions shall use NoTraceIDProvider"));
+    assertTrue(
+        nsOptions.getDefaultWaitOptions().getTraceIDProvider() instanceof NoTraceIDProvider, getTestMessage(testName, "DefaultWaitOptions shall use NoTraceIDProvider"));
+    assertTrue(
+        nsOptions.getDefaultInvalidationOptions().getTraceIDProvider() instanceof NoTraceIDProvider, getTestMessage(testName, "DefaultInvalidationOptions shall use NoTraceIDProvider"));
   }
 
   @Test
@@ -180,10 +177,10 @@ public class NamespacePropertiesReflectionTest {
 
     NamespaceProperties parsed = NamespaceProperties.parse(possibleSKDefWithTraceIdProvider);
     String testName = "canParsePossibleSKDefWithTraceIdProvider";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertEquals(getTestMessage(testName, "reflection.getName() shall be correctly reflected"), dummyNsName,
-        parsed.getName());
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertEquals(dummyNsName,
+        parsed.getName(), getTestMessage(testName, "reflection.getName() shall be correctly reflected"));
 
     testDefaultOperationOptionsTraceIDProvider(testName, parsed);
   }
@@ -219,10 +216,10 @@ public class NamespacePropertiesReflectionTest {
 
     NamespaceProperties parsed = NamespaceProperties.parse(possibleSKDef);
     String testName = "canParsePossibleSkDef";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertEquals(getTestMessage(testName, "reflection.getName() shall be correctly reflected"), dummyNsName,
-        parsed.getName());
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertEquals(dummyNsName,
+        parsed.getName(), getTestMessage(testName, "reflection.getName() shall be correctly reflected"));
 
     testDefaultOperationOptionsTraceIDProvider(testName, parsed);
   }
@@ -258,10 +255,10 @@ public class NamespacePropertiesReflectionTest {
 
     NamespaceProperties parsed = NamespaceProperties.parse(legacySKDef);
     String testName = "canParseLegacySkDef";
-    assertFalse(getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"),
-        parsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"),
-        parsed.hasName());
+    assertFalse(
+        parsed.hasCreationTime(), getTestMessage(testName, "reflection.hasCreationTime() shall be false for partial initialization"));
+    assertFalse(
+        parsed.hasName(), getTestMessage(testName, "reflection.hasName() shall be false for partial initialization"));
 
     testDefaultOperationOptionsTraceIDProvider(testName, parsed);
   }
@@ -279,26 +276,26 @@ public class NamespacePropertiesReflectionTest {
     NamespaceProperties legacyParsed = NamespaceProperties.parse(legacyDef);
 
     String testName = "backwardCompatibility";
-    assertNotEquals(getTestMessage(testName, "legacyDef shall drop new fields"), advancedDef, legacyDef);
+    assertNotEquals(advancedDef, legacyDef, getTestMessage(testName, "legacyDef shall drop new fields"));
     for (String doggyField : doggyFields) {
-      assertFalse(getTestMessage(testName, "legacyDef shall drop [" + doggyField + "] field"),
-          legacyDef.contains(doggyField));
+      assertFalse(
+          legacyDef.contains(doggyField), getTestMessage(testName, "legacyDef shall drop [" + doggyField + "] field"));
     }
     for (String doggyField : doggyFields) {
-      assertTrue(getTestMessage(testName, "advancedDef shall keep [" + doggyField + "] field"),
-          advancedDef.contains(doggyField));
+      assertTrue(
+          advancedDef.contains(doggyField), getTestMessage(testName, "advancedDef shall keep [" + doggyField + "] field"));
     }
 
-    assertFalse(getTestMessage(testName, "legacyDef shall drop [creationTime] field and successfully parsed"),
-        legacyParsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "legacyDef shall drop [name] field and successfully parsed"),
-        legacyParsed.hasName());
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getParent().equals(advancedParsed.getParent()));
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getOptions().equals(advancedParsed.getOptions()));
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getMinVersion() == advancedParsed.getMinVersion());
+    assertFalse(
+        legacyParsed.hasCreationTime(), getTestMessage(testName, "legacyDef shall drop [creationTime] field and successfully parsed"));
+    assertFalse(
+        legacyParsed.hasName(), getTestMessage(testName, "legacyDef shall drop [name] field and successfully parsed"));
+    assertTrue(
+        legacyParsed.getParent().equals(advancedParsed.getParent()), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
+    assertTrue(
+        legacyParsed.getOptions().equals(advancedParsed.getOptions()), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
+    assertTrue(
+        legacyParsed.getMinVersion() == advancedParsed.getMinVersion(), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
 
     testDefaultOperationOptionsTraceIDProvider(testName, advancedParsed);
     testDefaultOperationOptionsTraceIDProvider(testName, legacyParsed);
@@ -317,26 +314,26 @@ public class NamespacePropertiesReflectionTest {
     NamespaceProperties legacyParsed = NamespaceProperties.parse(legacyDef);
 
     String testName = "backwardCompatibility";
-    assertNotEquals(getTestMessage(testName, "legacyDef shall drop new fields"), advancedDef, legacyDef);
+    assertNotEquals(advancedDef, legacyDef, getTestMessage(testName, "legacyDef shall drop new fields"));
     for (String doggyField : doggyFields) {
-      assertFalse(getTestMessage(testName, "legacyDef shall drop [" + doggyField + "] field"),
-          legacyDef.contains(doggyField));
+      assertFalse(
+          legacyDef.contains(doggyField), getTestMessage(testName, "legacyDef shall drop [" + doggyField + "] field"));
     }
     for (String doggyField : doggyFields) {
-      assertTrue(getTestMessage(testName, "advancedDef shall keep [" + doggyField + "] field"),
-          advancedDef.contains(doggyField));
+      assertTrue(
+          advancedDef.contains(doggyField), getTestMessage(testName, "advancedDef shall keep [" + doggyField + "] field"));
     }
 
-    assertFalse(getTestMessage(testName, "legacyDef shall drop [creationTime] field and successfully parsed"),
-        legacyParsed.hasCreationTime());
-    assertFalse(getTestMessage(testName, "legacyDef shall drop [name] field and successfully parsed"),
-        legacyParsed.hasName());
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getParent().equals(advancedParsed.getParent()));
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getOptions().equals(advancedParsed.getOptions()));
-    assertTrue(getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"),
-        legacyParsed.getMinVersion() == advancedParsed.getMinVersion());
+    assertFalse(
+        legacyParsed.hasCreationTime(), getTestMessage(testName, "legacyDef shall drop [creationTime] field and successfully parsed"));
+    assertFalse(
+        legacyParsed.hasName(), getTestMessage(testName, "legacyDef shall drop [name] field and successfully parsed"));
+    assertTrue(
+        legacyParsed.getParent().equals(advancedParsed.getParent()), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
+    assertTrue(
+        legacyParsed.getOptions().equals(advancedParsed.getOptions()), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
+    assertTrue(
+        legacyParsed.getMinVersion() == advancedParsed.getMinVersion(), getTestMessage(testName, "Non-doggy fields shall be same between advanced and legacy"));
 
     testDefaultOperationOptionsTraceIDProvider(testName, advancedParsed);
     testDefaultOperationOptionsTraceIDProvider(testName, legacyParsed);

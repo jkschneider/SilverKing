@@ -4,19 +4,16 @@ import static com.ms.silverking.testing.Assert.exceptionNameChecker;
 import static com.ms.silverking.testing.Util.getTestMessage;
 import static com.ms.silverking.util.PropertiesHelper.ParseExceptionAction.DefaultOnParseException;
 import static com.ms.silverking.util.PropertiesHelper.ParseExceptionAction.RethrowParseException;
-import static com.ms.silverking.util.PropertiesHelper.UndefinedAction.DefaultOnUndefined;
-import static com.ms.silverking.util.PropertiesHelper.UndefinedAction.ExceptionOnUndefined;
-import static com.ms.silverking.util.PropertiesHelper.UndefinedAction.ZeroOnUndefined;
-import static org.junit.Assert.assertEquals;
-
-import java.util.Properties;
+import static com.ms.silverking.util.PropertiesHelper.UndefinedAction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.Compression;
 import com.ms.silverking.testing.Util.ExceptionChecker;
 import com.ms.silverking.util.PropertiesHelper.ParseExceptionAction;
 import com.ms.silverking.util.PropertiesHelper.UndefinedAction;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Properties;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PropertiesHelperTest {
 
@@ -39,7 +36,7 @@ public class PropertiesHelperTest {
   private static final String keyEnum = "enumProperty";
   private static final String valueEnum = "LZ4";
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     properties = new Properties();
     setProperty(key1, value1);
@@ -94,8 +91,8 @@ public class PropertiesHelperTest {
 
   private void checkGetStringAllParams(String name, String defaultValue, UndefinedAction undefinedAction,
       String expected) {
-    assertEquals(getTestMessage("getString", name, defaultValue, undefinedAction), expected,
-        ph.getString(name, defaultValue, undefinedAction));
+    assertEquals(expected,
+        ph.getString(name, defaultValue, undefinedAction), getTestMessage("getString", name, defaultValue, undefinedAction));
   }
 
   @Test
@@ -141,8 +138,8 @@ public class PropertiesHelperTest {
 
   private void checkGetIntAllParams(String name, int defaultValue, UndefinedAction undefinedAction,
       ParseExceptionAction parseExceptionAction, int expected) {
-    assertEquals(getTestMessage("getInt", name, defaultValue, undefinedAction, parseExceptionAction), expected,
-        ph.getInt(name, defaultValue, undefinedAction, parseExceptionAction));
+    assertEquals(expected,
+        ph.getInt(name, defaultValue, undefinedAction, parseExceptionAction), getTestMessage("getInt", name, defaultValue, undefinedAction, parseExceptionAction));
   }
 
   @Test
@@ -190,8 +187,8 @@ public class PropertiesHelperTest {
 
   private void checkGetBooleanAllParams(String name, boolean defaultValue, UndefinedAction undefinedAction,
       ParseExceptionAction parseExceptionAction, boolean expected) {
-    assertEquals(getTestMessage("getBoolean", name, defaultValue, undefinedAction, parseExceptionAction), expected,
-        ph.getBoolean(name, defaultValue, undefinedAction, parseExceptionAction));
+    assertEquals(expected,
+        ph.getBoolean(name, defaultValue, undefinedAction, parseExceptionAction), getTestMessage("getBoolean", name, defaultValue, undefinedAction, parseExceptionAction));
   }
 
   @Test
@@ -237,8 +234,8 @@ public class PropertiesHelperTest {
 
   private void checkGetLongAllParams(String name, long defaultValue, UndefinedAction undefinedAction,
       ParseExceptionAction parseExceptionAction, long expected) {
-    assertEquals(getTestMessage("getLong", name, defaultValue, undefinedAction, parseExceptionAction), expected,
-        ph.getLong(name, defaultValue, undefinedAction, parseExceptionAction));
+    assertEquals(expected,
+        ph.getLong(name, defaultValue, undefinedAction, parseExceptionAction), getTestMessage("getLong", name, defaultValue, undefinedAction, parseExceptionAction));
   }
 
   public void testGetEnumAllParams_Exceptions() {
@@ -287,7 +284,7 @@ public class PropertiesHelperTest {
   private void checkGetEnumAllParams(String name, Compression defaultValue, UndefinedAction undefinedAction,
       ParseExceptionAction parseExceptionAction, Compression expected) {
     //System.out.printf("%s %s %s %s %s\n", name, defaultValue, undefinedAction, parseExceptionAction, expected);
-    assertEquals(getTestMessage("getEnum", name, defaultValue, undefinedAction, parseExceptionAction), expected,
-        ph.getEnum(name, defaultValue, undefinedAction, parseExceptionAction));
+    assertEquals(expected,
+        ph.getEnum(name, defaultValue, undefinedAction, parseExceptionAction), getTestMessage("getEnum", name, defaultValue, undefinedAction, parseExceptionAction));
   }
 }

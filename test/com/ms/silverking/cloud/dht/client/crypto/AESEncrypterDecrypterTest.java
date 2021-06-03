@@ -1,23 +1,12 @@
 package com.ms.silverking.cloud.dht.client.crypto;
 
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.byte_minToMax;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.checkEncryptDecrypt;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.createAES;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.empty;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.m2mXORCopy;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.negOne;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.negOneCopy;
-import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.posOne;
-import static com.ms.silverking.testing.AssertFunction.test_Equals;
-import static com.ms.silverking.testing.AssertFunction.test_HashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.test_HashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
+import static com.ms.silverking.cloud.dht.client.crypto.TestUtil.*;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util;
 import com.ms.silverking.util.PropertyException;
+import java.io.IOException;
 import org.junit.Test;
 
 public class AESEncrypterDecrypterTest {
@@ -30,7 +19,7 @@ public class AESEncrypterDecrypterTest {
 
   private static final AESEncrypterDecrypter[][] testCasesEquals = {
       //FIXME:bph: why are these commented out?        {negOneAES, negOneAESCopy},
-      { emptyAES, emptyAES }, { posOneAES, posOneAES },
+      { emptyAES, emptyAES }, { posOneAES, posOneAES }
       //FIXME:bph: why are these commented out?        {m2mAES,    m2mAESCopy},
   };
   private static final EncrypterDecrypter[][] testCasesNotEquals = { { negOneAES, emptyAES }, { emptyAES, posOneAES },

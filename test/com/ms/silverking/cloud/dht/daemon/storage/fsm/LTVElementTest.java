@@ -1,11 +1,10 @@
 package com.ms.silverking.cloud.dht.daemon.storage.fsm;
 
+import com.ms.silverking.numeric.NumConversion;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-
-import com.ms.silverking.numeric.NumConversion;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class LTVElementTest {
   @Test
@@ -27,8 +26,8 @@ public class LTVElementTest {
     b.putInt(value);
 
     e = new LTVElement(b);
-    Assert.assertEquals(length, e.getLength());
-    Assert.assertEquals(type, e.getType());
-    Assert.assertEquals(value, e.getValueBuffer().getInt());
+    Assertions.assertEquals(length, e.getLength());
+    Assertions.assertEquals(type, e.getType());
+    Assertions.assertEquals(value, e.getValueBuffer().getInt());
   }
 }

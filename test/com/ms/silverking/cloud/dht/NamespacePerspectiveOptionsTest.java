@@ -2,27 +2,10 @@ package com.ms.silverking.cloud.dht;
 
 import static com.ms.silverking.cloud.dht.NamespacePerspectiveOptions.standardKeyDigestType;
 import static com.ms.silverking.cloud.dht.NamespacePerspectiveOptions.standardVersionProvider;
-import static com.ms.silverking.cloud.dht.TestUtil.goCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.goDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.ioCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.ioDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.poCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.poDiff;
-import static com.ms.silverking.cloud.dht.TestUtil.woCopy;
-import static com.ms.silverking.cloud.dht.TestUtil.woDiff;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.defaultEncrypterDecrypter;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardGetOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardInvalidationOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardPutOptions;
-import static com.ms.silverking.cloud.dht.common.DHTConstants.standardWaitOptions;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_SetterExceptions;
-import static com.ms.silverking.testing.AssertFunction.test_Setters;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.cloud.dht.TestUtil.*;
+import static com.ms.silverking.cloud.dht.common.DHTConstants.*;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.AbsMillisVersionProvider;
 import com.ms.silverking.cloud.dht.client.ConstantVersionProvider;
@@ -33,7 +16,7 @@ import com.ms.silverking.cloud.dht.client.crypto.XOREncrypterDecrypter;
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.testing.Util.ExceptionChecker;
 import com.ms.silverking.time.ConstantAbsMillisTimeSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class NamespacePerspectiveOptionsTest {

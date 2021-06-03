@@ -1,7 +1,7 @@
 package com.ms.silverking.cloud.dht.client;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.time.AbsMillisTimeSource;
@@ -51,7 +51,7 @@ public class TestUtil {
       long expected = (long) testCase[0];
       VersionProvider vp = (VersionProvider) testCase[1];
 
-      assertEquals(getTestMessage("getVersion", expected, vp), expected, vp.getVersion());
+      assertEquals(expected, vp.getVersion(), getTestMessage("getVersion", expected, vp));
     }
   }
 

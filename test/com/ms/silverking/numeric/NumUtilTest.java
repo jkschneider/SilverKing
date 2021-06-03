@@ -1,25 +1,16 @@
 package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
-import static com.ms.silverking.testing.Util.copy;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.double_maxVal;
-import static com.ms.silverking.testing.Util.double_nan;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static com.ms.silverking.testing.Util.int_maxVal;
-import static com.ms.silverking.testing.Util.int_minVal;
-import static com.ms.silverking.testing.Util.long_maxVal;
-import static com.ms.silverking.testing.Util.long_minVal;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.google.common.primitives.Doubles;
+import com.ms.silverking.testing.Util.ExceptionChecker;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.primitives.Doubles;
-import com.ms.silverking.testing.Util.ExceptionChecker;
 import org.junit.Test;
 
 public class NumUtilTest {
@@ -75,16 +66,16 @@ public class NumUtilTest {
     int[] valuesCopy = copy(values);
     NumUtil.add(valuesCopy, constant);
     assertArrayEquals(
-        getTestMessage("add", createToString(values), constant, createToString(expected), createToString(valuesCopy)),
-        expected, valuesCopy);
+        expected, valuesCopy,
+        getTestMessage("add", createToString(values), constant, createToString(expected), createToString(valuesCopy)));
   }
 
   private void checkSub(int[] values, int constant, int[] expected) {
     int[] valuesCopy = copy(values);
     NumUtil.sub(valuesCopy, constant);
     assertArrayEquals(
-        getTestMessage("sub", createToString(values), constant, createToString(expected), createToString(valuesCopy)),
-        expected, valuesCopy);
+        expected, valuesCopy,
+        getTestMessage("sub", createToString(values), constant, createToString(expected), createToString(valuesCopy)));
   }
 
   @Test
@@ -108,16 +99,16 @@ public class NumUtilTest {
   }
 
   private void checkSum_Double(double[] values, double expected) {
-    assertEquals(getTestMessage("sum_Double", createToString(values)), expected, NumUtil.sum(Doubles.asList(values)),
-        0);
+    assertEquals(expected, NumUtil.sum(Doubles.asList(values)),
+        0, getTestMessage("sum_Double", createToString(values)));
   }
 
   private void checkSum_Int(int[] values, int expected) {
-    assertEquals(getTestMessage("sum_Int", createToString(values)), expected, NumUtil.sum(values));
+    assertEquals(expected, NumUtil.sum(values), getTestMessage("sum_Int", createToString(values)));
   }
 
   private void checkSum_BigDecimal(List<BigDecimal> values, BigDecimal expected) {
-    assertEquals(getTestMessage("sum_BigDecimal", values), expected, NumUtil.sum(values, mathContext));
+    assertEquals(expected, NumUtil.sum(values, mathContext), getTestMessage("sum_BigDecimal", values));
   }
 
   private List<BigDecimal> bigDecimalAsList(int[] values) {
@@ -157,8 +148,8 @@ public class NumUtilTest {
   }
 
   private void checkDoubleToBD(double[] values, List<BigDecimal> expected) {
-    assertEquals(getTestMessage("doubleToBD", createToString(values)), expected,
-        NumUtil.doubleToBD(Doubles.asList(values), mathContext));
+    assertEquals(expected,
+        NumUtil.doubleToBD(Doubles.asList(values), mathContext), getTestMessage("doubleToBD", createToString(values)));
   }
 
   @Test(expected = RuntimeException.class)
@@ -198,8 +189,8 @@ public class NumUtilTest {
   }
 
   private void checkNormalizeAsBD(double[] values, List<BigDecimal> expected) {
-    assertEquals(getTestMessage("normalizeAsBD", createToString(values)), expected,
-        NumUtil.normalizeAsBD(Doubles.asList(values), mathContext));
+    assertEquals(expected,
+        NumUtil.normalizeAsBD(Doubles.asList(values), mathContext), getTestMessage("normalizeAsBD", createToString(values)));
   }
 
   @Test
@@ -241,15 +232,15 @@ public class NumUtilTest {
   }
 
   private void checkLog2(int value, int expected) {
-    assertEquals(getTestMessage("log2", value), expected, NumUtil.log2(value));
+    assertEquals(expected, NumUtil.log2(value), getTestMessage("log2", value));
   }
 
   private void checkLog2OfPerfectPower(int value, int expected) {
-    assertEquals(getTestMessage("log2OfPerfectPower", value), expected, NumUtil.log2OfPerfectPower(value));
+    assertEquals(expected, NumUtil.log2OfPerfectPower(value), getTestMessage("log2OfPerfectPower", value));
   }
 
   private void checkIsPowerOf2(int value, boolean expected) {
-    assertEquals(getTestMessage("isPowerOf2", value), expected, NumUtil.isPowerOf2(value));
+    assertEquals(expected, NumUtil.isPowerOf2(value), getTestMessage("isPowerOf2", value));
   }
 
   @Test
@@ -271,11 +262,11 @@ public class NumUtilTest {
   }
 
   private void checkLog_Double(double base, double value, double expected) {
-    assertEquals(getTestMessage("log_Double", base, value), expected, NumUtil.log(base, value), 0);
+    assertEquals(expected, NumUtil.log(base, value), 0, getTestMessage("log_Double", base, value));
   }
 
   private void checkLog_Int(int base, int value, int expected) {
-    assertEquals(getTestMessage("log_Int", base, value), expected, NumUtil.log(base, value));
+    assertEquals(expected, NumUtil.log(base, value), getTestMessage("log_Int", base, value));
   }
 
   @Test
@@ -296,11 +287,11 @@ public class NumUtilTest {
   }
 
   private void checkPow_Long(long base, long exponent, long expected) {
-    assertEquals(getTestMessage("pow_Long", base, exponent), expected, NumUtil.pow(base, exponent));
+    assertEquals(expected, NumUtil.pow(base, exponent), getTestMessage("pow_Long", base, exponent));
   }
 
   private void checkPow_Int(int base, int exponent, int expected) {
-    assertEquals(getTestMessage("pow_Int", base, exponent), expected, NumUtil.pow(base, exponent));
+    assertEquals(expected, NumUtil.pow(base, exponent), getTestMessage("pow_Int", base, exponent));
   }
 
   @Test
@@ -318,7 +309,7 @@ public class NumUtilTest {
 
   private void checkLongHashCode(long value, int expected) {
     String param = "0x" + Long.toHexString(value);
-    assertEquals(getTestMessage("longHashCode", param.toUpperCase()), expected, NumUtil.longHashCode(value));
+    assertEquals(expected, NumUtil.longHashCode(value), getTestMessage("longHashCode", param.toUpperCase()));
   }
 
   @Test
@@ -337,7 +328,7 @@ public class NumUtilTest {
   }
 
   private void checkAddWithClamp(long a, long b, long expected) {
-    assertEquals(getTestMessage("addWithClamp", a, b), expected, NumUtil.addWithClamp(a, b));
+    assertEquals(expected, NumUtil.addWithClamp(a, b), getTestMessage("addWithClamp", a, b));
   }
 
 }

@@ -2,7 +2,7 @@ package com.ms.silverking.cloud.dht.common;
 
 import java.io.IOException;
 
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 
 import static com.ms.silverking.cloud.dht.NamespaceVersionMode.*;
@@ -25,7 +25,7 @@ public class NamespaceOptionsClientTest {
     private static DHTSession session;
     private static final String namespaceName = "NamespaceOptionsClientTest";
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws ClientException, IOException {
         session = createSession();
         _createNamespace(SINGLE_VERSION, UNRESTRICTED_REVISIONS);

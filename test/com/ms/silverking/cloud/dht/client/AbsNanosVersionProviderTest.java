@@ -14,7 +14,7 @@ import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.cloud.dht.common.SystemTimeUtil;
 import com.ms.silverking.time.AbsNanosTimeSource;
 import com.ms.silverking.time.SafeAbsNanosTimeSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class AbsNanosVersionProviderTest {

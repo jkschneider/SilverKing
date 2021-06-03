@@ -10,15 +10,15 @@ import com.ms.silverking.cloud.zookeeper.LocalZKImpl;
 import com.ms.silverking.cloud.zookeeper.ZooKeeperConfig;
 import com.ms.silverking.log.Log;
 import org.apache.commons.io.FileUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 public abstract class LocalZkServerTestSuite {
   private static Path tempDir;
   private static int zkPort;
   private static ZooKeeperConfig zkConfig;
 
-  @BeforeClass
+  @BeforeAll
   public static void setUp() throws IOException {
     tempDir = Files.createTempDirectory(null);
     File zkDir = new File(tempDir.toFile(), "zookeeper");
@@ -30,7 +30,7 @@ public abstract class LocalZkServerTestSuite {
     Log.warning("Embedded ZooKeeper running at: " + zkConfig);
   }
 
-  @AfterClass
+  @AfterAll
   public static void stop() {
     Log.warning("Stopping all global DHTNode processes");
     LocalZKImpl.shutdown();

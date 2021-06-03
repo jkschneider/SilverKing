@@ -1,16 +1,13 @@
 package com.ms.silverking.cloud.dht;
 
-import static com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode.OptionalAutoCreation_AllowMatches;
-import static com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode.OptionalAutoCreation_DisallowMatches;
-import static com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode.RequireAutoCreation;
-import static com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode.RequireExplicitCreation;
+import static com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode.*;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.NamespaceCreationOptions.Mode;
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.cloud.dht.common.DHTConstants;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class NamespaceCreationOptionsTest {
@@ -54,8 +51,8 @@ public class NamespaceCreationOptionsTest {
       String namespaceName = (String) testCase[3];
       boolean expected = (boolean) testCase[4];
 
-      assertEquals(getTestMessage("canBeAutoCreated", mode, regex, nsOptions, namespaceName), expected,
-          createOptions(mode, regex, nsOptions).canBeAutoCreated(namespaceName));
+      assertEquals(expected,
+          createOptions(mode, regex, nsOptions).canBeAutoCreated(namespaceName), getTestMessage("canBeAutoCreated", mode, regex, nsOptions, namespaceName));
     }
   }
 

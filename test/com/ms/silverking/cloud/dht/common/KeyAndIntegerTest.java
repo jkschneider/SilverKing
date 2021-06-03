@@ -1,12 +1,9 @@
 package com.ms.silverking.cloud.dht.common;
 
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_Equals;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class KeyAndIntegerTest {
 

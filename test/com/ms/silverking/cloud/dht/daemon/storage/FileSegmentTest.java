@@ -20,7 +20,7 @@ import com.ms.silverking.cloud.dht.common.SimpleValueCreator;
 import com.ms.silverking.cloud.dht.daemon.storage.fsm.FileSegmentStorageFormat;
 import com.ms.silverking.io.util.BufferUtil;
 import com.ms.silverking.text.StringUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FileSegmentTest {
   private static final NamespaceOptions nsOptions;

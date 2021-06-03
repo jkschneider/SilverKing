@@ -1,27 +1,24 @@
 package com.ms.silverking.collection;
 
-import static com.ms.silverking.collection.TestUtil.key1;
-import static com.ms.silverking.collection.TestUtil.value1;
-import static com.ms.silverking.collection.TestUtil.value2;
+import static com.ms.silverking.collection.TestUtil.*;
 import static com.ms.silverking.testing.Assert.checkEqualsEmptyList;
 import static com.ms.silverking.testing.Assert.checkEqualsEmptySet;
 import static com.ms.silverking.testing.Assert.checkEqualsSetOne;
 import static com.ms.silverking.testing.Util.createList;
 import static com.ms.silverking.testing.Util.createSet;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class HashedListMapTest {
 
   private HashedListMap<Integer, Integer> map;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     clearMap();
   }
@@ -175,46 +172,46 @@ public class HashedListMapTest {
   }
 
   private void checkValueSet(Set<Integer> expected) {
-    assertEquals("Checking value set", expected, map.valueSet());
+    assertEquals(expected, map.valueSet(), "Checking value set");
   }
 
   private void checkTotalSize(int expectedSize) {
-    assertEquals("Checking total size", expectedSize, map.totalSize());
+    assertEquals(expectedSize, map.totalSize(), "Checking total size");
   }
 
   private void checkListSize(Integer key, int expectedSize) {
-    assertEquals("Checking list size", expectedSize, map.listSize(key));
+    assertEquals(expectedSize, map.listSize(key), "Checking list size");
   }
 
   private void checkContainsValue(Integer key, Integer value, boolean expected) {
-    assertEquals("Checking contains value", expected, map.containsValue(key, value));
+    assertEquals(expected, map.containsValue(key, value), "Checking contains value");
   }
 
   private void checkRemoveValue(Integer key, Integer value, boolean expected) {
-    assertEquals("Checking remove value", expected, map.removeValue(key, value));
+    assertEquals(expected, map.removeValue(key, value), "Checking remove value");
   }
 
   private void checkGetFirstValue(Integer key, Integer expected) {
-    assertEquals("Checking get first value", expected, map.getFirstValue(key));
+    assertEquals(expected, map.getFirstValue(key), "Checking get first value");
   }
 
   private void checkRemoveFirstValue(Integer key, Integer expected) {
-    assertEquals("Checking remove first value", expected, map.removeFirstValue(key));
+    assertEquals(expected, map.removeFirstValue(key), "Checking remove first value");
   }
 
   private void checkGetList(Integer key, List<Integer> expected) {
-    assertEquals("Checking get list", expected, map.getList(key));
+    assertEquals(expected, map.getList(key), "Checking get list");
   }
 
   private void checkRemoveList(Integer key, List<Integer> expected) {
-    assertEquals("Checking remove list", expected, map.removeList(key));
+    assertEquals(expected, map.removeList(key), "Checking remove list");
   }
 
   private void checkGetLists(List<List<Integer>> expected) {
-    assertEquals("Checking get lists", expected, map.getLists());
+    assertEquals(expected, map.getLists(), "Checking get lists");
   }
 
   private void checkGetKeys(List<Integer> expected) {
-    assertEquals("Checking get keys", expected, map.getKeys());
+    assertEquals(expected, map.getKeys(), "Checking get keys");
   }
 }

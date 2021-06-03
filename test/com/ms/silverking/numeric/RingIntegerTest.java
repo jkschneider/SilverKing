@@ -2,11 +2,11 @@ package com.ms.silverking.numeric;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RingIntegerTest {
 
@@ -15,7 +15,7 @@ public class RingIntegerTest {
   private static final int max = 1000;
   private static final int value = 0;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     ri = createInteger(min, max, value);
   }
@@ -103,11 +103,11 @@ public class RingIntegerTest {
   }
 
   private void checkEquals(RingInteger r1, RingInteger r2, boolean expected) {
-    assertEquals(getTestMessage("equals", r1, r2), expected, r1.equals(r2));
+    assertEquals(expected, r1.equals(r2), getTestMessage("equals", r1, r2));
   }
 
   private void checkRingShared(RingInteger r1, RingInteger r2, boolean expected) {
-    assertEquals(getTestMessage("ringShared", r1, r2), expected, RingInteger.ringShared(r1, r2));
+    assertEquals(expected, RingInteger.ringShared(r1, r2), getTestMessage("ringShared", r1, r2));
   }
 
 }

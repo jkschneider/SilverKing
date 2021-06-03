@@ -2,17 +2,13 @@ package com.ms.silverking.cloud.dht;
 
 import static com.ms.silverking.cloud.dht.TestUtil.getImplementationType;
 import static com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionPolicyImpl.ImplementationType.RetainAll;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.test_Equals;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.EmptyValueRetentionState;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.PermanentRetentionPolicyImpl;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class PermanentRetentionPolicyTest {

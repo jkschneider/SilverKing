@@ -7,8 +7,8 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.security.CodeSource;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.ms.silverking.fs.TestUtil;
 import com.ms.silverking.fs.test.FSStress;
@@ -27,7 +27,7 @@ public class FSStressTest {
     private static final String fsStressDirName = "fs-stress";
     private static final File   fsStressDir     = new File(testsDirPath, fsStressDirName);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         setupAndCheckTestsDirectory(fsStressDir);
     }

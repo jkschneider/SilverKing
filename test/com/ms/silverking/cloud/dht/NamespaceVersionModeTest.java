@@ -1,16 +1,11 @@
 package com.ms.silverking.cloud.dht;
 
-import static com.ms.silverking.cloud.dht.NamespaceVersionMode.CLIENT_SPECIFIED;
-import static com.ms.silverking.cloud.dht.NamespaceVersionMode.SEQUENTIAL;
-import static com.ms.silverking.cloud.dht.NamespaceVersionMode.SINGLE_VERSION;
-import static com.ms.silverking.cloud.dht.NamespaceVersionMode.SYSTEM_TIME_MILLIS;
-import static com.ms.silverking.cloud.dht.NamespaceVersionMode.SYSTEM_TIME_NANOS;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import static com.ms.silverking.cloud.dht.NamespaceVersionMode.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class NamespaceVersionModeTest {

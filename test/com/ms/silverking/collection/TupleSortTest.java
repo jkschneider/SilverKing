@@ -3,9 +3,8 @@ package com.ms.silverking.collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class TupleSortTest {
   private static final int listSize = 10;
@@ -28,7 +27,7 @@ public class TupleSortTest {
     System.out.println();
     prev = Integer.MIN_VALUE;
     for (Pair<Integer, Integer> pair : pairs) {
-      Assert.assertTrue(pair.getV2() >= prev);
+      Assertions.assertTrue(pair.getV2() >= prev);
       System.out.printf("%s\n", pair);
     }
   }

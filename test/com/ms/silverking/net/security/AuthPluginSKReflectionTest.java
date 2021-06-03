@@ -1,11 +1,10 @@
 package com.ms.silverking.net.security;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AuthPluginSKReflectionTest {
 
@@ -31,13 +30,13 @@ public class AuthPluginSKReflectionTest {
 
       AuthenticationResult result = parsedAuthenticator.syncAuthenticate(null, true, 0);
 
-      assertEquals(getTestMessage("isSuccessful", "impl=[" + authenticator.getClass().getCanonicalName() + "]"),
-          expectedSuccess, result.isSuccessful());
+      assertEquals(
+          expectedSuccess, result.isSuccessful(), getTestMessage("isSuccessful", "impl=[" + authenticator.getClass().getCanonicalName() + "]"));
       if (expectedId != null)
-        assertEquals(getTestMessage("getAuthId", "impl=[" + authenticator.getClass().getCanonicalName() + "]"),
-            expectedId, result.getAuthenticatedId().get());
-      assertEquals(getTestMessage("createAuthFailResult", "impl=[" + authenticator.getClass().getCanonicalName() + "]"),
-          expectedAction, result.getFailedAction());
+        assertEquals(
+            expectedId, result.getAuthenticatedId().get(), getTestMessage("getAuthId", "impl=[" + authenticator.getClass().getCanonicalName() + "]"));
+      assertEquals(
+          expectedAction, result.getFailedAction(), getTestMessage("createAuthFailResult", "impl=[" + authenticator.getClass().getCanonicalName() + "]"));
     }
   }
 

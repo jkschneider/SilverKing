@@ -1,22 +1,13 @@
 package com.ms.silverking.collection;
 
-import static com.ms.silverking.collection.CollectionUtil.defaultEmptyDef;
-import static com.ms.silverking.collection.CollectionUtil.defaultEndBrace;
-import static com.ms.silverking.collection.CollectionUtil.defaultMapEntrySeparator;
-import static com.ms.silverking.collection.CollectionUtil.defaultMapString;
-import static com.ms.silverking.collection.CollectionUtil.defaultSeparator;
-import static com.ms.silverking.collection.CollectionUtil.defaultStartBrace;
+import static com.ms.silverking.collection.CollectionUtil.*;
 import static com.ms.silverking.collection.TestUtil.empty;
-import static com.ms.silverking.testing.Util.createList;
-import static com.ms.silverking.testing.Util.createSet;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.junit.Test;
 
 public class CollectionUtilTest {
@@ -39,7 +30,7 @@ public class CollectionUtilTest {
 
   @Test
   public void testToString() {
-    assertEquals(toStringName, defaultEmptyDef, CollectionUtil.toString(createList()));
+    assertEquals(defaultEmptyDef, CollectionUtil.toString(createList()), toStringName);
 
     Object[][][] testCases = { { { empty }, { empty } }, { { "a" }, { "a" }, }, { { "a", "b" }, { "a" + sep + "b" } },
         { { 1 }, { "1" }, }, { { 1, 2 }, { "1" + sep + "2" } }, };
@@ -53,8 +44,8 @@ public class CollectionUtilTest {
   }
 
   private <T> void checkToString(T[] elements, String expected) {
-    assertEquals(getTestMessage(toStringName, createToString(elements)), expected,
-        CollectionUtil.toString(createList(elements)));
+    assertEquals(expected,
+        CollectionUtil.toString(createList(elements)), getTestMessage(toStringName, createToString(elements)));
   }
 
   @Test(expected = NullPointerException.class)
@@ -65,7 +56,7 @@ public class CollectionUtilTest {
   @Test
   public void testMapToString() {
     Map<Integer, String> map = new HashMap<>();
-    assertEquals(mapToStringName, defaultEmptyDef, CollectionUtil.mapToString(map));
+    assertEquals(defaultEmptyDef, CollectionUtil.mapToString(map), mapToStringName);
 
     Object[][] testCases = { { 1, empty, "1" + mStr }, { 1, "a", "1" + mStr + "a" },
         { 2, empty, "1" + mStr + "a" + mSep + "2" + mStr },
@@ -82,7 +73,7 @@ public class CollectionUtilTest {
   }
 
   private <K, V> void checkMapToString(Map<K, V> map, String expected) {
-    assertEquals(getTestMessage(mapToStringName, map), expected, CollectionUtil.mapToString(map));
+    assertEquals(expected, CollectionUtil.mapToString(map), getTestMessage(mapToStringName, map));
   }
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -100,7 +91,7 @@ public class CollectionUtilTest {
   }
 
   private <T> void checkStringSet(Set<T> param, Set<String> expected) {
-    assertEquals(getTestMessage(stringSetName, param), expected, CollectionUtil.stringSet(param));
+    assertEquals(expected, CollectionUtil.stringSet(param), getTestMessage(stringSetName, param));
   }
 
   @Test
@@ -121,6 +112,6 @@ public class CollectionUtilTest {
 
   private void checkParseSet(String def, String pattern, String[] expectedElements) {
     Set<String> expected = createSet(expectedElements);
-    assertEquals(getTestMessage(parseSetName, def, pattern), expected, CollectionUtil.parseSet(def, pattern));
+    assertEquals(expected, CollectionUtil.parseSet(def, pattern), getTestMessage(parseSetName, def, pattern));
   }
 }

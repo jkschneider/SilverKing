@@ -1,12 +1,11 @@
 package com.ms.silverking.id;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.UUID;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UUIDBaseTest {
 
@@ -36,11 +35,11 @@ public class UUIDBaseTest {
   }
 
   private void checkMostSignificant(UUIDBase base, long expectedMsb) {
-    assertEquals(getTestMessage("getMostSignificantBits", base), expectedMsb, base.getMostSignificantBits());
+    assertEquals(expectedMsb, base.getMostSignificantBits(), getTestMessage("getMostSignificantBits", base));
   }
 
   private void checkLeastSignificant(UUIDBase base, long expectedLsb) {
-    assertEquals(getTestMessage("getLeastSignificantBits", base), expectedLsb, base.getLeastSignificantBits());
+    assertEquals(expectedLsb, base.getLeastSignificantBits(), getTestMessage("getLeastSignificantBits", base));
   }
 
   @Test
@@ -70,10 +69,10 @@ public class UUIDBaseTest {
   }
 
   private void checkCompareTo(UUIDBase base1, UUIDBase base2, int expectedValue) {
-    assertEquals(getTestMessage("compareTo", base1, base2), expectedValue, base1.compareTo(base2));
+    assertEquals(expectedValue, base1.compareTo(base2), getTestMessage("compareTo", base1, base2));
   }
 
   private void checkEquals(UUIDBase base1, UUIDBase base2, boolean expectedValue) {
-    assertEquals(getTestMessage("equals", base1, base2), expectedValue, base1.equals(base2));
+    assertEquals(expectedValue, base1.equals(base2), getTestMessage("equals", base1, base2));
   }
 }

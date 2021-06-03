@@ -2,13 +2,12 @@ package com.ms.silverking.id;
 
 import static com.ms.silverking.testing.Util.createToString;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.ByteBuffer;
 import java.util.UUID;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UUIDUtilTest {
 
@@ -37,15 +36,15 @@ public class UUIDUtilTest {
 
   private void checkUuidToBytes(UUID uuid, byte[] expected) {
     byte[] actual = UUIDUtil.uuidToBytes(uuid);
-    assertArrayEquals(getTestMessage("checkUuidToBytes", uuid, "expected = " + createToString(expected),
-        "actual   = " + createToString(actual)), expected, actual);
+    assertArrayEquals(expected, actual, getTestMessage("checkUuidToBytes", uuid, "expected = " + createToString(expected),
+        "actual   = " + createToString(actual)));
   }
 
   private void checkBytesToUuid(byte[] bytes, UUID expected) {
-    assertEquals(getTestMessage("checkBytesToUuid", createToString(bytes)), expected, UUIDUtil.bytesToUUID(bytes));
+    assertEquals(expected, UUIDUtil.bytesToUUID(bytes), getTestMessage("checkBytesToUuid", createToString(bytes)));
   }
 
   private void checkGetUuid(ByteBuffer buff, UUID expected) {
-    assertEquals(getTestMessage("checkGetUuid", buff), expected, UUIDUtil.getUUID(buff));
+    assertEquals(expected, UUIDUtil.getUUID(buff), getTestMessage("checkGetUuid", buff));
   }
 }

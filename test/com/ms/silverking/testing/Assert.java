@@ -2,13 +2,10 @@ package com.ms.silverking.testing;
 
 import static com.ms.silverking.testing.Util.createList;
 import static com.ms.silverking.testing.Util.createSet;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Collection;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
+import java.util.Collection;
 
 public class Assert {
 
@@ -33,11 +30,11 @@ public class Assert {
   }
 
   public static void checkException(String testMessage, Class<?> expected, Exception ex) {
-    assertEquals(testMessage, expected, ex.getClass());
+    assertEquals(expected, ex.getClass(), testMessage);
   }
 
   public static void assertPass(String msg) {
-    assertTrue(msg, true);
+    assertTrue(true, msg);
   }
 
   public static void assertZero(int actualSize) {

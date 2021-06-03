@@ -1,14 +1,10 @@
 package com.ms.silverking.alert;
 
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_SetterExceptions;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AlertTest {
 

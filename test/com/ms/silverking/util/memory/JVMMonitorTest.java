@@ -1,17 +1,17 @@
 package com.ms.silverking.util.memory;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class JVMMonitorTest {
 
   private JVMMonitor jm;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     jm = new JVMMonitor(0, 0, 0, true, 0, null);
   }
@@ -35,6 +35,6 @@ public class JVMMonitorTest {
   }
 
   private void checkBytesToMb(long bytes, double expectedMb) {
-    assertEquals(getTestMessage("bytesToMB", bytes), expectedMb, jm.bytesToMB(bytes), 0);
+    assertEquals(expectedMb, jm.bytesToMB(bytes), 0, getTestMessage("bytesToMB", bytes));
   }
 }

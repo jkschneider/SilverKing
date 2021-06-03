@@ -1,9 +1,9 @@
 package com.ms.silverking.time;
 
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TimeUtilsTest {
 
@@ -26,15 +26,15 @@ public class TimeUtilsTest {
   }
 
   private void checkHoursInMillis(int hours, int expected) {
-    assertEquals(getTestMessage("hoursInMillis", hours), expected, TimeUtils.hoursInMillis(hours));
+    assertEquals(expected, TimeUtils.hoursInMillis(hours), getTestMessage("hoursInMillis", hours));
   }
 
   private void checkMinutesInMillis(int minutes, int expected) {
-    assertEquals(getTestMessage("minutesInMillis", minutes), expected, TimeUtils.minutesInMillis(minutes));
+    assertEquals(expected, TimeUtils.minutesInMillis(minutes), getTestMessage("minutesInMillis", minutes));
   }
 
   private void checkSecondsInMillis(int seconds, int expected) {
-    assertEquals(getTestMessage("secondInMillis", seconds), expected, TimeUtils.secondsInMillis(seconds));
+    assertEquals(expected, TimeUtils.secondsInMillis(seconds), getTestMessage("secondInMillis", seconds));
   }
 
 }

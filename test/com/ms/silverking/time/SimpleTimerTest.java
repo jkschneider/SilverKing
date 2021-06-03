@@ -3,17 +3,13 @@ package com.ms.silverking.time;
 import static com.ms.silverking.testing.Assert.exceptionConditionChecker;
 import static com.ms.silverking.testing.Util.ExceptionChecker;
 import static com.ms.silverking.testing.Util.long_maxVal;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import com.ms.silverking.time.Stopwatch.State;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.concurrent.TimeUnit;
-
-import com.ms.silverking.time.Stopwatch.State;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 
 public class SimpleTimerTest {
@@ -59,7 +55,7 @@ public class SimpleTimerTest {
   private SimpleTimer exceptionTimer;
   private static final long DURATION_IN_SECONDS = 1;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     createTimer();
   }

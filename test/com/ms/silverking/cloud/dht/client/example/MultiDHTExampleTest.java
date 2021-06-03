@@ -2,7 +2,7 @@ package com.ms.silverking.cloud.dht.client.example;
 
 import java.io.IOException;
 
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.Test;
 
 import com.ms.silverking.cloud.dht.client.ClientException;
@@ -16,7 +16,7 @@ public class MultiDHTExampleTest {
 
     private static MultiDHTExample mDht;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws IOException {
         if (!Util.isSetSkipMultiMachineTests())
             setup();

@@ -1,20 +1,15 @@
 package com.ms.silverking.text;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
-import static com.ms.silverking.testing.Util.createList;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static com.ms.silverking.testing.Util.int_maxVal;
-import static com.ms.silverking.testing.Util.long_maxVal;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.numeric.MutableInteger;
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import org.junit.jupiter.api.Test;
 
 // FIXME:bph: comments
 public class StringUtilTest {
@@ -38,12 +33,12 @@ public class StringUtilTest {
 
   private void checkSplitAndTrim(String source, String[] expected, String regex, String[] expectedRegex) {
     String testName = "splitAndTrim";
-    assertArrayEquals(getTestMessage(testName, source, createToString(expected)), expected,
-        StringUtil.splitAndTrim(source));
-    assertArrayEquals(getTestMessage(testName, source, regex, createToString(expectedRegex)), expectedRegex,
-        StringUtil.splitAndTrim(source, regex));
-    assertArrayEquals(getTestMessage(testName, source, createToString(expectedRegex)), expected,
-        StringUtil.splitAndTrimQuoted(source));
+    assertArrayEquals(expected,
+        StringUtil.splitAndTrim(source), getTestMessage(testName, source, createToString(expected)));
+    assertArrayEquals(expectedRegex,
+        StringUtil.splitAndTrim(source, regex), getTestMessage(testName, source, regex, createToString(expectedRegex)));
+    assertArrayEquals(expected,
+        StringUtil.splitAndTrimQuoted(source), getTestMessage(testName, source, createToString(expectedRegex)));
   }
 
   @Test
@@ -77,11 +72,11 @@ public class StringUtilTest {
     ByteBuffer bb = ByteBuffer.wrap(_bytes);
     String valAsHex = bi.toString(16);
 
-    assertEquals(getTestMessage(testName, val), expected, StringUtil.toHexString(bi));
-    assertEquals(getTestMessage(testName, val, offset, length, minorGroupSize, majorGroupSize), expectedAll,
-        StringUtil.byteArrayToHexString(_bytes, offset, length, minorGroupSize, majorGroupSize));
-    assertEquals(getTestMessage(testName, val, minorGroupSize, majorGroupSize), expectedByteBuffer,
-        StringUtil.byteBufferToHexString(bb, minorGroupSize, majorGroupSize));
+    assertEquals(expected, StringUtil.toHexString(bi), getTestMessage(testName, val));
+    assertEquals(expectedAll,
+        StringUtil.byteArrayToHexString(_bytes, offset, length, minorGroupSize, majorGroupSize), getTestMessage(testName, val, offset, length, minorGroupSize, majorGroupSize));
+    assertEquals(expectedByteBuffer,
+        StringUtil.byteBufferToHexString(bb, minorGroupSize, majorGroupSize), getTestMessage(testName, val, minorGroupSize, majorGroupSize));
     //        assertEquals(getTestMessage(testName, val),                                                 " ",
     //        StringUtil.byteBufferToString(bb));
     //        assertEquals(getTestMessage(testName, valAsHex),                                            bb,
@@ -95,7 +90,7 @@ public class StringUtilTest {
     Object[][] testCases = {
         //            {"-1", (byte)0},
         //            {"1", (byte)0},
-        { "00", (byte) 0 }, { "aC", (byte) 172 }, { "Ff", (byte) 255 },
+        { "00", (byte) 0 }, { "aC", (byte) 172 }, { "Ff", (byte) 255 }
         //            {"FG", (byte)255},
     };
 
@@ -108,7 +103,7 @@ public class StringUtilTest {
   }
 
   private void checkParseByte(String hexString, byte expected) {
-    assertEquals(getTestMessage("parseByte", hexString), expected, StringUtil.parseByte(hexString));
+    assertEquals(expected, StringUtil.parseByte(hexString), getTestMessage("parseByte", hexString));
   }
 
   @Test
@@ -136,8 +131,8 @@ public class StringUtilTest {
   }
 
   private void checkNextByteChars(String hexString, int index, String expected) {
-    assertEquals(getTestMessage("nextByteChars", hexString, index), expected,
-        StringUtil.nextByteChars(hexString, new MutableInteger(index)));
+    assertEquals(expected,
+        StringUtil.nextByteChars(hexString, new MutableInteger(index)), getTestMessage("nextByteChars", hexString, index));
   }
 
   @Test
@@ -156,7 +151,7 @@ public class StringUtilTest {
   }
 
   private void checkIsHexDigit(char hexChar, boolean expected) {
-    assertEquals(getTestMessage("isHexDigit", hexChar), expected, StringUtil.isHexDigit(hexChar));
+    assertEquals(expected, StringUtil.isHexDigit(hexChar), getTestMessage("isHexDigit", hexChar));
   }
 
   @Test
@@ -183,12 +178,12 @@ public class StringUtilTest {
     String array2dString = createToString(array2d);
     String lastArrayString = createToString(lastArray);
 
-    assertEquals(getTestMessage(testName, array2dString), expectedArray, StringUtil.arrayToString(array2d));
-    assertEquals(getTestMessage(testName, lastArrayString), expectedArrayQuoted,
-        StringUtil.arrayToQuotedString(lastArray));
-    assertEquals(getTestMessage(testName, lastArrayString), expectedList,
-        StringUtil.listToString(createList(lastArray)));
-    assertEquals(getTestMessage(testName, lastArrayString), expectedList, StringUtil.toString(createList(lastArray)));
+    assertEquals(expectedArray, StringUtil.arrayToString(array2d), getTestMessage(testName, array2dString));
+    assertEquals(expectedArrayQuoted,
+        StringUtil.arrayToQuotedString(lastArray), getTestMessage(testName, lastArrayString));
+    assertEquals(expectedList,
+        StringUtil.listToString(createList(lastArray)), getTestMessage(testName, lastArrayString));
+    assertEquals(expectedList, StringUtil.toString(createList(lastArray)), getTestMessage(testName, lastArrayString));
   }
 
   @Test
@@ -206,8 +201,8 @@ public class StringUtilTest {
   }
 
   private void checkStartsWithIgnoreCase(String target, String value, boolean expected) {
-    assertEquals(getTestMessage("startsWithIgnoreCase", target, value), expected,
-        StringUtil.startsWithIgnoreCase(target, value));
+    assertEquals(expected,
+        StringUtil.startsWithIgnoreCase(target, value), getTestMessage("startsWithIgnoreCase", target, value));
   }
 
   @Test
@@ -225,7 +220,7 @@ public class StringUtilTest {
   }
 
   private void checkMd5(String input, String expected) {
-    assertEquals(getTestMessage("md5", input), expected, StringUtil.md5(input));
+    assertEquals(expected, StringUtil.md5(input), getTestMessage("md5", input));
   }
 
   @Test
@@ -245,7 +240,7 @@ public class StringUtilTest {
   }
 
   private void checkCountOccurrences(String text, char term, int expected) {
-    assertEquals(getTestMessage("countOccurrences", text, term), expected, StringUtil.countOccurrences(text, term));
+    assertEquals(expected, StringUtil.countOccurrences(text, term), getTestMessage("countOccurrences", text, term));
   }
 
   @Test
@@ -266,8 +261,8 @@ public class StringUtilTest {
   private void checkReplicate(char charVal, String charExpected, String strVal, String strExpected) {
     String testName = "replicate";
     int n = 3;
-    assertEquals(getTestMessage(testName, charVal), charExpected, StringUtil.replicate(charVal, n));
-    assertEquals(getTestMessage(testName, strVal), strExpected, StringUtil.replicate(strVal, n));
+    assertEquals(charExpected, StringUtil.replicate(charVal, n), getTestMessage(testName, charVal));
+    assertEquals(strExpected, StringUtil.replicate(strVal, n), getTestMessage(testName, strVal));
   }
 
   @Test
@@ -294,8 +289,8 @@ public class StringUtilTest {
 
   private void checkProjectColumn(String[] lines, int column, String regex, boolean filter, String[] expected) {
     Object[] actual = StringUtil.projectColumn(createList(lines), column, regex, filter).toArray();
-    assertArrayEquals(getTestMessage("projectColumn", createToString(lines), column, regex, filter,
-        "expected = " + createList(expected), "actual = " + createList(actual)), expected, actual);
+    assertArrayEquals(expected, actual, getTestMessage("projectColumn", createToString(lines), column, regex, filter,
+        "expected = " + createList(expected), "actual = " + createList(actual)));
   }
 
   @Test
@@ -332,7 +327,7 @@ public class StringUtilTest {
   }
 
   private void checkStripQuotes(String quotedString, String expected) {
-    assertEquals(getTestMessage("stripQuotes", quotedString), expected, StringUtil.stripQuotes(quotedString));
+    assertEquals(expected, StringUtil.stripQuotes(quotedString), getTestMessage("stripQuotes", quotedString));
   }
 
   @Test
@@ -350,6 +345,6 @@ public class StringUtilTest {
   }
 
   private void checkFirstNCharsToUpperCase(String s, int n, String expected) {
-    assertEquals(getTestMessage("firstNCharsToUpperCase", s, n), expected, StringUtil.firstNCharsToUpperCase(s, n));
+    assertEquals(expected, StringUtil.firstNCharsToUpperCase(s, n), getTestMessage("firstNCharsToUpperCase", s, n));
   }
 }

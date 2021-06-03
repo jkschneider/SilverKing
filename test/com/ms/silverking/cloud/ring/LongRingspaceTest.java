@@ -2,10 +2,11 @@ package com.ms.silverking.cloud.ring;
 
 import static com.ms.silverking.testing.Assert.exceptionNameChecker;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LongRingspaceTest {
 
@@ -24,7 +25,7 @@ public class LongRingspaceTest {
       long input = testCase[0];
       long expected = testCase[1];
 
-      assertEquals(getTestMessage("longToRingspace", input), expected, LongRingspace.longToRingspace(input));
+      assertEquals(expected, LongRingspace.longToRingspace(input), getTestMessage("longToRingspace", input));
     }
   }
 
@@ -39,7 +40,7 @@ public class LongRingspaceTest {
       long l = (long) testCase[0];
       String expected = (String) testCase[1];
 
-      assertEquals(getTestMessage("longToFraction", l), expected, LongRingspace.longToFraction(l).toString());
+      assertEquals(expected, LongRingspace.longToFraction(l).toString(), getTestMessage("longToFraction", l));
     }
   }
 
@@ -47,7 +48,7 @@ public class LongRingspaceTest {
   public void testFractionToLong() {
     Object[][] testCases = {
         //            {-1d, }, can't test b/c of assert
-        { 0d, 0L }, { Double.MIN_VALUE, 0L }, { .5, end + 1 }, { 1d, size },
+        { 0d, 0L }, { Double.MIN_VALUE, 0L }, { .5, end + 1 }, { 1d, size }
         //            {Double.MAX_VALUE, }, can't test b/c of assert
     };
 
@@ -55,7 +56,7 @@ public class LongRingspaceTest {
       double f = (double) testCase[0];
       long expected = (long) testCase[1];
 
-      assertEquals(getTestMessage("fractionToLong", f), expected, LongRingspace.fractionToLong(f));
+      assertEquals(expected, LongRingspace.fractionToLong(f), getTestMessage("fractionToLong", f));
     }
   }
 
@@ -86,18 +87,22 @@ public class LongRingspaceTest {
       long b = testCase[1];
       long expected = testCase[2];
 
-      assertEquals(getTestMessage("addRingspace", a, b), expected, LongRingspace.addRingspace(a, b));
+      assertEquals(expected, LongRingspace.addRingspace(a, b), getTestMessage("addRingspace", a, b));
     }
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testAdd_Exceptions() {
-    LongRingspace.add(start, -1);
+    assertThrows(IllegalArgumentException.class, () -> {
+      LongRingspace.add(start, -1);
+    });
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testSubtract_Exceptions() {
-    LongRingspace.subtract(start - 1, -1);
+    assertThrows(IllegalArgumentException.class, () -> {
+      LongRingspace.subtract(start - 1, -1);
+    });
   }
 
   @Test
@@ -110,10 +115,10 @@ public class LongRingspaceTest {
       long expected = testCase[2];
 
       long actualAdd = LongRingspace.add(p, a);
-      assertEquals(getTestMessage("add", p, a), expected, actualAdd);
+      assertEquals(expected, actualAdd, getTestMessage("add", p, a));
 
       long actualSubtract = LongRingspace.subtract(actualAdd, a);
-      assertEquals(getTestMessage("subtract", actualAdd, a), p, actualSubtract);
+      assertEquals(p, actualSubtract, getTestMessage("subtract", actualAdd, a));
     }
   }
 
@@ -127,13 +132,13 @@ public class LongRingspaceTest {
       long p1 = testCase[1];
       long expected = testCase[2];
 
-      assertEquals(getTestMessage("clockwiseDistance", p0, p1), expected, LongRingspace.clockwiseDistance(p0, p1));
+      assertEquals(expected, LongRingspace.clockwiseDistance(p0, p1), getTestMessage("clockwiseDistance", p0, p1));
     }
   }
 
   @Test
   public void testNextPoint() {
-    long[][] testCases = { { start, start + 1 }, { 0, 1 }, { end - 1, end }, { end, start },
+    long[][] testCases = { { start, start + 1 }, { 0, 1 }, { end - 1, end }, { end, start }
         //            {Long.MIN_VALUE,  Long.MIN_VALUE+1}, // can't test b/c of assert
     };
 
@@ -141,7 +146,7 @@ public class LongRingspaceTest {
       long p = testCase[0];
       long expected = testCase[1];
 
-      assertEquals(getTestMessage("nextPoint", p), expected, LongRingspace.nextPoint(p));
+      assertEquals(expected, LongRingspace.nextPoint(p), getTestMessage("nextPoint", p));
     }
   }
 
@@ -153,7 +158,7 @@ public class LongRingspaceTest {
       long p = testCase[0];
       long expected = testCase[1];
 
-      assertEquals(getTestMessage("prevPoint", p), expected, LongRingspace.prevPoint(p));
+      assertEquals(expected, LongRingspace.prevPoint(p), getTestMessage("prevPoint", p));
     }
   }
 
@@ -166,7 +171,7 @@ public class LongRingspaceTest {
       long p = (long) testCase[0];
       boolean expected = (boolean) testCase[1];
 
-      assertEquals(getTestMessage("inRingspace", p), expected, LongRingspace.inRingspace(p));
+      assertEquals(expected, LongRingspace.inRingspace(p), getTestMessage("inRingspace", p));
     }
   }
 
@@ -186,8 +191,8 @@ public class LongRingspaceTest {
       long p = (long) testCase[1];
       long expected = (long) testCase[2];
 
-      assertEquals(getTestMessage("mapRegionPointToRingspace", p), expected,
-          LongRingspace.mapRegionPointToRingspace(region, p));
+      assertEquals(expected,
+          LongRingspace.mapRegionPointToRingspace(region, p), getTestMessage("mapRegionPointToRingspace", p));
     }
   }
 

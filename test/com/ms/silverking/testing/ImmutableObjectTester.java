@@ -11,7 +11,7 @@ import com.ms.silverking.cloud.dht.client.EmbeddedSKConfiguration;
 import com.ms.silverking.cloud.dht.meta.DHTConfiguration;
 import com.ms.silverking.collection.Pair;
 import com.ms.silverking.object.ObjectUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectTester {
   public ImmutableObjectTester() {

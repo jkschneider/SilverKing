@@ -1,21 +1,17 @@
 package com.ms.silverking.fs;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import static com.ms.silverking.io.FileUtil.copyDirectories;
+import static com.ms.silverking.fs.CrudTest.LoopType.*;
 import static com.ms.silverking.fs.TestUtil.*;
+import static com.ms.silverking.io.FileUtil.copyDirectories;
 import static com.ms.silverking.process.ProcessExecutor.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ms.silverking.testing.Util;
 import com.ms.silverking.testing.annotations.SkfsSmall;
-
-import static com.ms.silverking.fs.CrudTest.LoopType.*;
+import java.io.File;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * - Each @Test needs to cleanup what they generate or else it could cause the next @Test to fail
@@ -47,37 +43,37 @@ import static com.ms.silverking.fs.CrudTest.LoopType.*;
 @SkfsSmall
 public class CrudTest {
 
-    public enum LoopType { 
+    public enum LoopType {
         RENAME_DIR,
         RENAME_FILE,
         DOUBLE_RENAME_DIR,
         DOUBLE_RENAME_FILE,
         COPY_DIR,
-        COPY_FILE,
+        COPY_FILE
     }
-    
+
     private static final int NUMBER_OF_TIMES_TO_RENAME = 400;
-    
+
     private static String testsDirPath;
-    
+
     static {
         testsDirPath = TestUtil.getTestsDir();
     }
-    
+
     private static final String crudDirName    = "crud";
     private static final String crudDirPath    = testsDirPath + separator + crudDirName;
-    
+
     private static final String parentDirName  = "parentDir";
     private static final String parentDirPath  = crudDirPath + separator + parentDirName;
-    
+
     private static final String parentFileName = "parentFile.txt";
     private static final String parentFilePath = crudDirPath + separator + parentFileName;
 
     private static final File crudDir   = new File(testsDirPath, crudDirName);
-    
+
     private final File parentDir        = new File(crudDirPath, parentDirName);
     private final File parentDirRename  = new File(crudDirPath, parentDirName+"Rename");
-    
+
     private final File parentFile       = new File(crudDirPath, parentFileName);
     private final File parentFileRename = new File(crudDirPath, parentFileName+"Rename");
 
@@ -92,20 +88,20 @@ public class CrudTest {
     private final File badFileName      = new File(crudDirPath, parentFileName + unicode_delete_nonBreakingSpace_latinCapitalLetterAWithCircumflex_null);
 
     private static final String testFilesDirName = "testFiles";
-    
+
     private final File testFilesDir = Util.getFile(getClass(), testFilesDirName, "");
     private final File singleLine   = Util.getFile(getClass(), testFilesDirName, "singleLineFile.txt");
     private final File multipleLine = Util.getFile(getClass(), testFilesDirName, "multipleLineFile.txt");
-    
+
     private final File copy1 = new File(parentDirPath, "copy1");
     private final File copy2 = new File(parentDirPath, "copy2");
-    
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpBeforeClass() {
         setupAndCheckTestsDirectory(crudDir);
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownAfterClass() {
 //        deleteTestFolder();
     }
@@ -123,68 +119,68 @@ public class CrudTest {
     private void createAndCheckDir() {
         TestUtil.createAndCheckDir(parentDir);
     }
-    
+
     private void deleteAndCheckDir() {
         TestUtil.deleteAndCheck(parentDir);
     }
-    
+
     private void createAndCheckFile() {
         TestUtil.createAndCheckFile(parentFile);
     }
-    
+
     private void deleteAndCheckFile() {
         TestUtil.deleteAndCheck(parentFile);
     }
-    
+
     private void checkRead(String contents) {
         TestUtil.checkRead( parentFile, contents);
     }
-    
+
     private void checkWrite(String contents) {
         TestUtil.checkWrite(parentFile, contents);
     }
-    
-    @Test    
+
+    @Test
     public void testCreateAndDelete_Directory() {
 //        printName("testCreateAndDelete_Directory");
         createAndCheckDir();
         checkDir(true);
-        
+
         deleteAndCheckDir();
         checkDir(false);
     }
-    
+
     private void checkDir(boolean expected) {
         assertEquals(expected,      parentDir.exists());
         assertEquals(expected,      parentDir.isDirectory());
         assertEquals(crudDirPath,   parentDir.getParent());
         assertEquals(parentDirPath, parentDir.getPath());
         assertEquals(parentDirName, parentDir.getName());
-        
+
         if (expected)
             checkDirIsEmpty(parentDir);
         else
             checkDirIsNull(parentDir);
     }
-    
+
     private void checkDirIsEmpty(File dir) {
         assertEquals(0, dir.listFiles().length);
     }
-    
+
     private void checkDirIsNull(File dir) {
         assertNull(dir.listFiles());
     }
-    
+
     @Test
     public void testCreateAndDelete_File() {
 //        printName("testCreateAndDelete_File");
         createAndCheckFile();
         checkFile(true);
-        
+
         deleteAndCheckFile();
         checkFile(false);
     }
-    
+
     private void checkFile(boolean expected) {
         assertEquals(expected,       parentFile.exists());
         assertEquals(expected,       parentFile.isFile());
@@ -196,29 +192,29 @@ public class CrudTest {
         assertEquals(parentFilePath, parentFile.getPath());
         assertEquals(parentFileName, parentFile.getName());
     }
-    
+
     @Test
     public void testCreateDirectoryWithGoodUnicodeCharactersInName() {
         TestUtil.createAndCheckDir(goodDirName);
         TestUtil.deleteAndCheck(goodDirName);
     }
-    
+
     @Test
     public void testCreateFileWithGoodUnicodeCharactersInName() {
         TestUtil.createAndCheckFile(goodFileName);
         TestUtil.deleteAndCheck(goodFileName);
     }
-    
+
     @Test
     public void testCreateDirectoryWithBadUnicodeCharactersInName() {
         TestUtil.createAndCheckDirFail(badDirName);
     }
-    
+
     @Test
     public void testCreateFileWithBadUnicodeCharactersInName() {
         TestUtil.createAndCheckFileFail(badFileName);
     }
-    
+
     @Test
     public void testRead() {
 //        printName("testRead");
@@ -226,12 +222,12 @@ public class CrudTest {
         checkReadIsEmpty(parentFile);
         deleteAndCheckFile();
     }
-    
+
     @Test
     public void testWrite() {
 //        printName("testWrite");
         createAndCheckFile();
-        
+
         String contents = "aba cadaba";
         checkWrite(contents);
         checkRead( contents);
@@ -250,22 +246,22 @@ public class CrudTest {
         checkRename(parentDir, parentDirRename);
         rename_PostChecks_Directory(parentDirRename);
     }
-    
+
     private void rename_PreChecks_Directory() {
         checkDirIsEmpty(crudDir);
         checkDoesntExist(parentDir);
         checkDoesntExist(parentDirRename);
-        
+
         createAndCheckDir();
     }
-    
+
     private void rename_PostChecks_Directory(File renamed) {
         deleteAndCheck(renamed);
-        
+
         checkDoesntExist(parentDir);
         checkDoesntExist(parentDirRename);
     }
-    
+
     @Test
     public void testRename_File() {
 //        printName("testRename_File");
@@ -273,32 +269,32 @@ public class CrudTest {
         checkRename(parentFile, parentFileRename);
         rename_PostChecks_File(parentFileRename);
     }
-    
+
     private void rename_PreChecks_File() {
         checkDirIsEmpty(crudDir);
         checkDoesntExist(parentFile);
         checkDoesntExist(parentFileRename);
-        
+
         createAndCheckFile();
     }
-    
+
     private void rename_PostChecks_File(File renamed) {
         deleteAndCheck(renamed);
-        
+
         checkDoesntExist(parentFile);
         checkDoesntExist(parentFileRename);
     }
-    
+
     @Test
     public void testRenameLoop_Directory() {
         testLoop(RENAME_DIR);
     }
-    
+
     @Test
     public void testRenameLoop_File() {
         testLoop(RENAME_FILE);
     }
-    
+
     @Test
     public void testDoubleRename_Directory() {
 //        printName("testDoubleRename_Directory");
@@ -307,7 +303,7 @@ public class CrudTest {
         checkRename(parentDirRename, parentDir);
         rename_PostChecks_Directory(parentDir);
     }
-    
+
     @Test
     public void testDoubleRename_File() {
 //        printName("testDoubleRename_File");
@@ -316,17 +312,17 @@ public class CrudTest {
         checkRename(parentFileRename, parentFile);
         rename_PostChecks_File(parentFile);
     }
-    
+
     @Test
     public void testDoubleRenameLoop_Directory() {
         testLoop(DOUBLE_RENAME_DIR);
     }
-    
+
     @Test
     public void testDoubleRenameLoop_File() {
         testLoop(DOUBLE_RENAME_FILE);
     }
-    
+
     @Test
     public void testCopy_Directory() {
 //        printName("testCopy_Directory");
@@ -338,7 +334,7 @@ public class CrudTest {
         assertFalse(parentDir.delete());    // equivalent to rmdir, and "rmdir of a non-empty directory should return an error"
         deleteRecursive(parentDir);
     }
-    
+
     @Test
     public void testCopy_File() {
 //        printName("testCopy_File");
@@ -347,7 +343,7 @@ public class CrudTest {
         checkCopyAndRead(multipleLine, copy2, "this is a test file with multiple lines"+newline+"and I'm spanning"+newline+"multiple lines"+newline+"great"+newline+"EOF", "286419593 81",  "efee80a1e02ee54237b3484ab1657d50");
         deleteAndCheckDir();
     }
-    
+
     private void checkCopyAndRead(File from, File to, String expectedContents, String expectedChecksum, String expectedMd5sum) {
         checkCopy(from, to);
         checkEquals(from, to);
@@ -356,47 +352,47 @@ public class CrudTest {
         checkMd5sum(  to, expectedMd5sum);
         deleteAndCheck(to);
     }
-    
+
     @Test
     public void testCopyLoop_Directory() {
         testLoop(COPY_DIR);
     }
-    
+
     @Test
     public void testCopyLoop_File() {
         testLoop(COPY_FILE);
     }
-    
+
     private void testLoop(LoopType lt) {
         for (int i = 0; i < NUMBER_OF_TIMES_TO_RENAME; i++)
             switch (lt) {
-                case RENAME_DIR:            
+                case RENAME_DIR:
                     testRename_Directory();
                     break;
-                case RENAME_FILE:            
+                case RENAME_FILE:
                     testRename_File();
                     break;
-                case DOUBLE_RENAME_DIR:        
+                case DOUBLE_RENAME_DIR:
                     testDoubleRename_Directory();
                     break;
-                case DOUBLE_RENAME_FILE:    
+                case DOUBLE_RENAME_FILE:
                     testDoubleRename_File();
                     break;
-                case COPY_DIR:    
+                case COPY_DIR:
                     testCopy_Directory();
                     break;
-                case COPY_FILE:    
+                case COPY_FILE:
                     testCopy_File();
                     break;
                 default:
                     throw new RuntimeException("unknown loop case: " + lt);
             }
     }
-    
+
     public static void main(String[] args) {
         if (args.length == 1)
             testsDirPath = TestUtil.getTestsDir( args[0] );
-        
+
         Util.println("Running tests in: " + testsDirPath);
         Util.runTests(CrudTest.class);
     }

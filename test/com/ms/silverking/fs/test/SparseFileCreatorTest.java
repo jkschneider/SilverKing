@@ -5,8 +5,8 @@ import static com.ms.silverking.fs.TestUtil.setupAndCheckTestsDirectory;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.ms.silverking.fs.TestUtil;
 import com.ms.silverking.fs.test.SparseFileCreator;
@@ -25,7 +25,7 @@ public class SparseFileCreatorTest {
     private static final String sfcDirName = "sparse-file-creator";
     private static final File   sfcDir     = new File(testsDirPath, sfcDirName);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         setupAndCheckTestsDirectory(sfcDir);
     }

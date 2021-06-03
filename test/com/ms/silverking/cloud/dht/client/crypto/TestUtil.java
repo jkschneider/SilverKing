@@ -1,11 +1,8 @@
 package com.ms.silverking.cloud.dht.client.crypto;
 
-import static com.ms.silverking.testing.Util.byte_maxVal;
-import static com.ms.silverking.testing.Util.byte_minVal;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtil {
 
@@ -39,7 +36,7 @@ public class TestUtil {
   public static void checkEncryptDecrypt(byte[] expected, EncrypterDecrypter ec) {
     byte[] encrypted = ec.encrypt(expected);
     byte[] decrypted = ec.decrypt(encrypted, 0, encrypted.length);
-    assertArrayEquals(getTestMessage("encryptDecrypt", ec, createToString(expected), createToString(decrypted)),
-        expected, decrypted);
+    assertArrayEquals(
+        expected, decrypted, getTestMessage("encryptDecrypt", ec, createToString(expected), createToString(decrypted)));
   }
 }

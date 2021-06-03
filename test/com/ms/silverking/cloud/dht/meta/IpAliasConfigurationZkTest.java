@@ -9,7 +9,7 @@ import com.ms.silverking.cloud.zookeeper.SilverKingZooKeeperClient;
 import com.ms.silverking.cloud.zookeeper.SilverKingZooKeeperClient.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class IpAliasConfigurationZkTest extends LocalZkServerTestSuite implements Watcher {
   public IpAliasConfigurationZkTest() {

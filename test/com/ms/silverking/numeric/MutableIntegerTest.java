@@ -2,16 +2,16 @@ package com.ms.silverking.numeric;
 
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MutableIntegerTest {
 
   private MutableInteger mi;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     mi = new MutableInteger(0);
   }

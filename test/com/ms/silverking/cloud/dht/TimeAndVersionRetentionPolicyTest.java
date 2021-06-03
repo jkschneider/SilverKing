@@ -2,19 +2,14 @@ package com.ms.silverking.cloud.dht;
 
 import static com.ms.silverking.cloud.dht.TestUtil.getImplementationType;
 import static com.ms.silverking.cloud.dht.daemon.storage.retention.ValueRetentionPolicyImpl.ImplementationType.SingleReverseSegmentWalk;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeEquals;
-import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
-import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
-import static com.ms.silverking.testing.AssertFunction.test_Getters;
-import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.AssertFunction.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.cloud.dht.TimeAndVersionRetentionPolicy.Mode;
 import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.cloud.dht.common.DHTKey;
 import com.ms.silverking.cloud.dht.daemon.storage.retention.TimeAndVersionRetentionState;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class TimeAndVersionRetentionPolicyTest {
@@ -38,7 +33,7 @@ public class TimeAndVersionRetentionPolicyTest {
 
   @Test
   public void testGetters() {
-    Object[][] testCases = { { SingleReverseSegmentWalk, getImplementationType(defaultPolicy) },
+    Object[][] testCases = { { SingleReverseSegmentWalk, getImplementationType(defaultPolicy) }
         //            {new TimeAndVersionRetentionState(), getInitialState(defaultPolicy)},    // FIXME:bph:
         //             currently no equals on TimeAndVersionRetentionState so this will assert !equal
     };
@@ -68,7 +63,7 @@ public class TimeAndVersionRetentionPolicyTest {
 
     Object[][] testCases = { { defaultPolicy, key, 0L, 0L, false, new TimeAndVersionRetentionState(), 0L, true },
         // minVersion condition
-        { defaultPolicyDiff, key, 0L, 100L, true, new TimeAndVersionRetentionState(), 0L, true },
+        { defaultPolicyDiff, key, 0L, 100L, true, new TimeAndVersionRetentionState(), 0L, true }
         // delta      condition
     };
 

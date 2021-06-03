@@ -6,7 +6,7 @@ import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_Fi
 import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
 import static com.ms.silverking.time.TestUtil.systemSource;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SystemTimeSourceTest {
 

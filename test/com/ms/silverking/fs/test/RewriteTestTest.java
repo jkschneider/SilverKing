@@ -5,21 +5,19 @@ import static com.ms.silverking.fs.test.RewriteTest.Mode.Verify;
 import static com.ms.silverking.fs.test.RewriteTest.Mode.Write;
 import static com.ms.silverking.fs.test.RewriteTest.blockSize;
 import static com.ms.silverking.fs.test.RewriteTest.fillBuf;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.fs.TestUtil;
 import com.ms.silverking.fs.test.RewriteTest.Mode;
 import com.ms.silverking.testing.Util;
 import com.ms.silverking.testing.annotations.SkfsSmall;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 @SkfsSmall
 public class RewriteTestTest {
@@ -29,7 +27,7 @@ public class RewriteTestTest {
     static {
         testsDirPath = TestUtil.getTestsDir();
     }
-    
+
     private static final String rewriteDirName = "re-write";
     private static final File   rewriteDir     = new File(testsDirPath, rewriteDirName);
 
@@ -43,16 +41,16 @@ public class RewriteTestTest {
     private byte byte_5 = '5';
     private byte byte_6 = '6';
     private Mode[] testCases = new Mode[]{Write, Verify};
-    
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpBeforeClass() {
         setupAndCheckTestsDirectory(rewriteDir);
     }
-    
+
     @Test
     public void testCurrent() throws IOException {
         String testName = "Current";
-        
+
         rt = createRewrite(testName, Write);
         rt.testCurrent();
 
@@ -66,11 +64,11 @@ public class RewriteTestTest {
         fillBuf(buf, lastStart, lastLength, byte_A);
         checkRead(buf);
     }
-    
+
     @Test
     public void testPast() throws IOException {
         String testName = "Past";
-        
+
         rt = createRewrite(testName, Write);
         rt.testPast();
 
@@ -84,11 +82,11 @@ public class RewriteTestTest {
         fillBuf(buf, lastStart, lastLength, byte_A);
         checkRead(buf);
     }
-    
+
     @Test
     public void testCurrentAndPast() throws IOException {
         String testName = "CurrentAndPast";
-        
+
         rt = createRewrite(testName, Write);
         rt.testCurrentAndPast();
 
@@ -102,11 +100,11 @@ public class RewriteTestTest {
         fillBuf(buf, lastStart, lastLength, byte_A);
         checkRead(buf);
     }
-    
+
     @Test
     public void testCurrentAndPastAndExtension() throws IOException {
         String testName = "CurrentAndPastAndExtension";
-        
+
         rt = createRewrite(testName, Write);
         rt.testCurrentAndPastAndExtension();
 
@@ -117,11 +115,11 @@ public class RewriteTestTest {
         fillBuf(buf,       128,  blockSize, byte_B);
         checkRead(buf);
     }
-    
+
     @Test
     public void testLast() throws IOException {
         String testName = "Last";
-        
+
         rt = createRewrite(testName, Write);
         rt.testLast();
 
@@ -132,11 +130,11 @@ public class RewriteTestTest {
         fillBuf(buf, blockSize+64,             64, byte_B);
         checkRead(buf);
     }
-    
+
     @Test
     public void testLastAndExtension() throws IOException {
         String testName = "LastAndExtension";
-        
+
         rt = createRewrite(testName, Write);
         rt.testLastAndExtension();
 
@@ -147,13 +145,13 @@ public class RewriteTestTest {
         fillBuf(buf, blockSize+64,            256, byte_B);
         checkRead(buf);
     }
-    
+
     @Test
     public void testBlockBorderOneByteEachSide() throws IOException {
         String testName = "BlockBorderOneByteEachSide";
         rt = createRewrite(testName, Write);
         rt.testBlockBorderOneByteEachSide();
-        
+
         rt = createRewrite(testName, Verify);
         int size = blockSize*2;
         byte[] buf = new byte[size];
@@ -161,15 +159,15 @@ public class RewriteTestTest {
         fillBuf(buf, blockSize-1,           1, byte_1);
         fillBuf(buf,   blockSize,           1, byte_2);
         fillBuf(buf, blockSize+1, blockSize-1, byte_B);
-        checkRead(buf); 
+        checkRead(buf);
     }
-    
+
     @Test
     public void testBlockBorder() throws IOException {
         String testName = "BlockBorder";
         rt = createRewrite(testName, Write);
         rt.testBlockBorder();
-        
+
         rt = createRewrite(testName, Verify);
         int size = blockSize*2;
         byte[] buf = new byte[size];
@@ -181,9 +179,9 @@ public class RewriteTestTest {
         fillBuf(buf, blockSize+1,           1, byte_5);
         fillBuf(buf, blockSize+2,           1, byte_6);
         fillBuf(buf, blockSize+3, blockSize-3, byte_B);
-        checkRead(buf); 
+        checkRead(buf);
     }
-    
+
     @Test
     public void testRandom() throws IOException {
         for (Mode testCase : testCases) {
@@ -191,22 +189,22 @@ public class RewriteTestTest {
             rt.testRandom(10, testCase);
         }
     }
-    
+
     private void checkRead(byte[] expected) throws IOException {
         RandomAccessFile raf = rt.getFile();
         byte[] actual = new byte[(int)raf.length()];
         int x = raf.read(actual);
-        
+
         x = raf.read();    // read past last byte, so EOF
         assertEquals(-1, x);
-        
+
         assertArrayEquals(expected, actual);
     }
-    
+
     private RewriteTest createRewrite(String name, Mode m) throws FileNotFoundException {
         return new RewriteTest(new File(rewriteDir, "test"+name), m);
     }
-    
+
     public static void main(String[] args) {
         Util.runTests(RewriteTestTest.class);
     }

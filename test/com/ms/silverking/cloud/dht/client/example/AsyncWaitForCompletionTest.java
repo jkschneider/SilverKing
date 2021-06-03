@@ -2,7 +2,7 @@ package com.ms.silverking.cloud.dht.client.example;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.ms.silverking.testing.Util;
 import com.ms.silverking.testing.annotations.SkLarge;

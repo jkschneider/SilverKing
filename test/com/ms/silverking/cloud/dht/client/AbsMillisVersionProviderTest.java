@@ -14,7 +14,7 @@ import com.ms.silverking.cloud.dht.client.gen.OmitGeneration;
 import com.ms.silverking.cloud.dht.common.SystemTimeUtil;
 import com.ms.silverking.time.AbsMillisTimeSource;
 import com.ms.silverking.time.ConstantAbsMillisTimeSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @OmitGeneration
 public class AbsMillisVersionProviderTest {

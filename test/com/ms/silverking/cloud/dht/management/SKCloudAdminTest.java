@@ -1,19 +1,14 @@
 package com.ms.silverking.cloud.dht.management;
 
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.LaunchInstances;
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.StartInstances;
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.StartSpark;
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.StopInstances;
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.StopSpark;
-import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.TerminateInstances;
+import static com.ms.silverking.cloud.dht.management.SKCloudAdminCommand.*;
 import static com.ms.silverking.testing.AssertFunction.test_SetterExceptions;
 import static com.ms.silverking.testing.Util.createToString;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.ms.silverking.testing.Util.ExceptionChecker;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SKCloudAdminTest {
 
@@ -126,7 +121,7 @@ public class SKCloudAdminTest {
 
   private void checkCommands(SKCloudAdmin cloudAdmin, SKCloudAdminCommand[] expectedCommands) {
     SKCloudAdminCommand[] actual = cloudAdmin.getCommands();
-    assertArrayEquals(getTestMessage("checkCommands", "expected = " + createToString(expectedCommands),
-        "actual   = " + createToString(actual)), expectedCommands, actual);
+    assertArrayEquals(expectedCommands, actual, getTestMessage("checkCommands", "expected = " + createToString(expectedCommands),
+        "actual   = " + createToString(actual)));
   }
 }

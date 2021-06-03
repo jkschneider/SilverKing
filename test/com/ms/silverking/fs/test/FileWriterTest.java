@@ -1,26 +1,20 @@
 package com.ms.silverking.fs.test;
 
 import static com.ms.silverking.fs.TestUtil.setupAndCheckTestsDirectory;
+import static com.ms.silverking.testing.Assert.assertPass;
 import static com.ms.silverking.testing.Util.createToString;
 import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import static com.ms.silverking.testing.Assert.assertPass;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.ms.silverking.fs.TestUtil;
 import com.ms.silverking.testing.Util;
 import com.ms.silverking.testing.annotations.SkfsLarge;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.Test;
 
 @SkfsLarge
 public class FileWriterTest {
@@ -31,21 +25,21 @@ public class FileWriterTest {
     static {
         testsDirPath = TestUtil.getTestsDir();
     }
-    
+
     private static final String fileWriterDirName = "file-writer";
     private static final File   fileWriterDir     = new File(testsDirPath, fileWriterDirName);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() {
         setupAndCheckTestsDirectory(fileWriterDir);
-        
+
         size = Long.parseLong( Util.getEnvVariable("SK_FILE_WRITER_FILE_SIZE").replace("_", "") );
     }
-    
+
     @Test(timeout=60_000)
     public void testWriteRead() {
         FileWriter fw = new FileWriter(new File(fileWriterDir, "fw.out"), size);
-        
+
         try {
             fw.write();
             assertPass("Write completed");
@@ -57,7 +51,7 @@ public class FileWriterTest {
             if (size % fw.getBufferSize() != 0)
                 expectedSize++;
             assertEquals(expectedSize, readBuffers.size());
-            
+
             for (byte[] readBuffer : readBuffers) {
                 int length = readBuffer.length;
                 byte[] expected = new byte[length];
@@ -73,7 +67,7 @@ public class FileWriterTest {
         } catch (IOException e) {
             fail(e.getMessage());
         }
-        
+
 //        StringBuffer expected = new StringBuffer();
 //        long totalBytes = 0;
 //        int bufferSize = fw.getBufferSize();
@@ -93,11 +87,11 @@ public class FileWriterTest {
 //            e.printStackTrace();
 //        }
     }
-    
+
     public static void main(String[] args) throws IOException {
         if (args.length == 1)
             testsDirPath = TestUtil.getTestsDir( args[0] );
-        
+
         Util.println("Running tests in: " + testsDirPath);
         Util.runTests(FileWriterTest.class);
     }

@@ -1,14 +1,10 @@
 package com.ms.silverking.numeric;
 
-import static com.ms.silverking.testing.Util.byte_maxVal;
-import static com.ms.silverking.testing.Util.byte_minVal;
-import static com.ms.silverking.testing.Util.copy;
-import static com.ms.silverking.testing.Util.createToString;
-import static com.ms.silverking.testing.Util.getTestMessage;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static com.ms.silverking.testing.Util.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 // FIXME:bph: comments
 public class NumConversionTest {
@@ -76,9 +72,9 @@ public class NumConversionTest {
   private void checkByteToBoolean(byte[] bytes, boolean expected, int offset, boolean offsetExpected) {
     String testName = "byteToBoolean";
     String bytesString = createToString(bytes);
-    assertEquals(getTestMessage(testName, bytesString), expected, NumConversion.byteToBoolean(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), offsetExpected,
-        NumConversion.byteToBoolean(bytes, offset));
+    assertEquals(expected, NumConversion.byteToBoolean(bytes), getTestMessage(testName, bytesString));
+    assertEquals(offsetExpected,
+        NumConversion.byteToBoolean(bytes, offset), getTestMessage(testName, bytesString, offset));
   }
 
   @Test
@@ -88,7 +84,7 @@ public class NumConversionTest {
   }
 
   private void checkBooleanToByte(boolean _boolean, byte expected) {
-    assertEquals(getTestMessage("booleanToByte", _boolean), expected, NumConversion.booleanToByte(_boolean));
+    assertEquals(expected, NumConversion.booleanToByte(_boolean), getTestMessage("booleanToByte", _boolean));
   }
 
   @Test
@@ -110,9 +106,9 @@ public class NumConversionTest {
   private void checkBytesToShort(byte[] bytes, short expected, int offset, short offsetExpected) {
     String testName = "bytesToShort";
     String bytesString = createToString(bytes);
-    assertEquals(getTestMessage(testName, bytesString), expected, NumConversion.bytesToShort(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), offsetExpected,
-        NumConversion.bytesToShort(bytes, offset));
+    assertEquals(expected, NumConversion.bytesToShort(bytes), getTestMessage(testName, bytesString));
+    assertEquals(offsetExpected,
+        NumConversion.bytesToShort(bytes, offset), getTestMessage(testName, bytesString, offset));
   }
 
   @Test
@@ -145,19 +141,19 @@ public class NumConversionTest {
     String bytesString = createToString(bytes);
 
     byte[] actual = NumConversion.shortToBytes(value);
-    assertArrayEquals(getTestMessage(testName, value, createToString(expected), createToString(actual)), expected,
-        actual);
+    assertArrayEquals(expected,
+        actual, getTestMessage(testName, value, createToString(expected), createToString(actual)));
 
     byte[] bytesCopy = copy(bytes);
     NumConversion.shortToBytes(value, bytesCopy, offset);
     assertArrayEquals(
-        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)),
-        offsetExpected, bytesCopy);
+        offsetExpected, bytesCopy,
+        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)));
 
     byte[] bytesCopy2 = copy(bytes);
     NumConversion.shortToBytesLittleEndian(value, bytesCopy2, offset);
-    assertArrayEquals(getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
-        createToString(bytesCopy2)), littleEndianOffsetExpected, bytesCopy2);
+    assertArrayEquals(littleEndianOffsetExpected, bytesCopy2, getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
+        createToString(bytesCopy2)));
   }
 
   @Test
@@ -178,8 +174,8 @@ public class NumConversionTest {
   private void checkBytesToUnsignedShort(byte[] bytes, int offset, int offsetExpected) {
     String testName = "bytesToUnsignedShort";
     String bytesString = createToString(bytes);
-    assertEquals(getTestMessage(testName, bytesString, offset, offsetExpected), offsetExpected,
-        NumConversion.bytesToUnsignedShort(bytes, offset));
+    assertEquals(offsetExpected,
+        NumConversion.bytesToUnsignedShort(bytes, offset), getTestMessage(testName, bytesString, offset, offsetExpected));
   }
 
   @Test
@@ -207,8 +203,8 @@ public class NumConversionTest {
     byte[] bytesCopy = copy(bytes);
     NumConversion.unsignedShortToBytes(value, bytesCopy, offset);
     assertArrayEquals(
-        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)),
-        offsetExpected, bytesCopy);
+        offsetExpected, bytesCopy,
+        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)));
   }
 
   @Test
@@ -237,13 +233,13 @@ public class NumConversionTest {
       int littleEndianOffsetExpected) {
     String testName = "bytesToInt";
     String bytesString = createToString(bytes);
-    assertEquals(getTestMessage(testName, bytesString), expected, NumConversion.bytesToInt(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), offsetExpected,
-        NumConversion.bytesToInt(bytes, offset));
-    assertEquals(getTestMessage(testName, bytesString), littleEndianExpected,
-        NumConversion.bytesToIntLittleEndian(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), littleEndianOffsetExpected,
-        NumConversion.bytesToIntLittleEndian(bytes, offset));
+    assertEquals(expected, NumConversion.bytesToInt(bytes), getTestMessage(testName, bytesString));
+    assertEquals(offsetExpected,
+        NumConversion.bytesToInt(bytes, offset), getTestMessage(testName, bytesString, offset));
+    assertEquals(littleEndianExpected,
+        NumConversion.bytesToIntLittleEndian(bytes), getTestMessage(testName, bytesString));
+    assertEquals(littleEndianOffsetExpected,
+        NumConversion.bytesToIntLittleEndian(bytes, offset), getTestMessage(testName, bytesString, offset));
   }
 
   @Test
@@ -283,19 +279,19 @@ public class NumConversionTest {
     String bytesString = createToString(bytes);
 
     byte[] actual = NumConversion.intToBytes(value);
-    assertArrayEquals(getTestMessage(testName, value, createToString(expected), createToString(actual)), expected,
-        actual);
+    assertArrayEquals(expected,
+        actual, getTestMessage(testName, value, createToString(expected), createToString(actual)));
 
     byte[] bytesCopy = copy(bytes);
     NumConversion.intToBytes(value, bytesCopy, offset);
     assertArrayEquals(
-        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)),
-        offsetExpected, bytesCopy);
+        offsetExpected, bytesCopy,
+        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)));
 
     byte[] bytesCopy2 = copy(bytes);
     NumConversion.intToBytesLittleEndian(value, bytesCopy2, offset);
-    assertArrayEquals(getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
-        createToString(bytesCopy2)), littleEndianOffsetExpected, bytesCopy2);
+    assertArrayEquals(littleEndianOffsetExpected, bytesCopy2, getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
+        createToString(bytesCopy2)));
   }
 
   @Test
@@ -330,13 +326,13 @@ public class NumConversionTest {
       long littleEndianOffsetExpected) {
     String testName = "bytesToLong";
     String bytesString = createToString(bytes);
-    assertEquals(getTestMessage(testName, bytesString), expected, NumConversion.bytesToLong(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), offsetExpected,
-        NumConversion.bytesToLong(bytes, offset));
-    assertEquals(getTestMessage(testName, bytesString), littleEndianExpected,
-        NumConversion.bytesToLongLittleEndian(bytes));
-    assertEquals(getTestMessage(testName, bytesString, offset), littleEndianOffsetExpected,
-        NumConversion.bytesToLongLittleEndian(bytes, offset));
+    assertEquals(expected, NumConversion.bytesToLong(bytes), getTestMessage(testName, bytesString));
+    assertEquals(offsetExpected,
+        NumConversion.bytesToLong(bytes, offset), getTestMessage(testName, bytesString, offset));
+    assertEquals(littleEndianExpected,
+        NumConversion.bytesToLongLittleEndian(bytes), getTestMessage(testName, bytesString));
+    assertEquals(littleEndianOffsetExpected,
+        NumConversion.bytesToLongLittleEndian(bytes, offset), getTestMessage(testName, bytesString, offset));
   }
 
   @Test
@@ -377,19 +373,19 @@ public class NumConversionTest {
     String bytesString = createToString(bytes);
 
     byte[] actual = NumConversion.longToBytes(value);
-    assertArrayEquals(getTestMessage(testName, value, createToString(expected), createToString(actual)), expected,
-        actual);
+    assertArrayEquals(expected,
+        actual, getTestMessage(testName, value, createToString(expected), createToString(actual)));
 
     byte[] bytesCopy = copy(bytes);
     NumConversion.longToBytes(value, bytesCopy, offset);
     assertArrayEquals(
-        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)),
-        offsetExpected, bytesCopy);
+        offsetExpected, bytesCopy,
+        getTestMessage(testName, bytesString, offset, value, createToString(offsetExpected), createToString(bytesCopy)));
 
     byte[] bytesCopy2 = copy(bytes);
     NumConversion.longToBytesLittleEndian(value, bytesCopy2, offset);
-    assertArrayEquals(getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
-        createToString(bytesCopy2)), littleEndianOffsetExpected, bytesCopy2);
+    assertArrayEquals(littleEndianOffsetExpected, bytesCopy2, getTestMessage(testName, bytesString, offset, value, createToString(littleEndianOffsetExpected),
+        createToString(bytesCopy2)));
   }
 
   @Test
@@ -397,7 +393,7 @@ public class NumConversionTest {
     Object[][] testCases = {
         //            {long_min,     0, -9_187_201_950_435_737_472d, -9_187_201_950_435_737_472d},
         //            {long_negOne,  0,                         -1d,                         -1d},
-        { long_zero, 0, 0d, 0d },
+        { long_zero, 0, 0d, 0d }
         //            {long_one,     0,     72_340_172_838_076_673d,     72_340_172_838_076_673d},
         //            {long_max,     0,  9_187_201_950_435_737_471L,  9_187_201_950_435_737_471L},
         //            {long_neg5To5, 0,   -289_077_004_416_843_518L,   -289_077_004_416_843_518L},
@@ -419,9 +415,9 @@ public class NumConversionTest {
 
       String testName = "bytesToDouble->doubleToBytes";
       String bytesString = createToString(bytes);
-      assertArrayEquals(getTestMessage(testName, bytesString, createToString(actualDoubleToBytes)), bytes,
-          actualDoubleToBytes);
-      assertArrayEquals(getTestMessage(testName, bytesString, offset), bytes, bytesCopy);
+      assertArrayEquals(bytes,
+          actualDoubleToBytes, getTestMessage(testName, bytesString, createToString(actualDoubleToBytes)));
+      assertArrayEquals(bytes, bytesCopy, getTestMessage(testName, bytesString, offset));
       //            checkBytesToDouble(bytes, expected, offset, offsetExpected);
       //            checkDoubleToBytes();
     }
@@ -471,7 +467,7 @@ public class NumConversionTest {
 
   private void checkIntsToLong(int msi, int lsi, long expected) {
     String testName = "intsToLong";
-    assertEquals(getTestMessage(testName, msi, lsi), expected, NumConversion.intsToLong(msi, lsi));
+    assertEquals(expected, NumConversion.intsToLong(msi, lsi), getTestMessage(testName, msi, lsi));
   }
 
   @Test
@@ -489,6 +485,6 @@ public class NumConversionTest {
 
   private void checkParseHexStringAsUnsignedLong(String hexString, long expected) {
     String testName = "parseHexStringAsUnsignedLong";
-    assertEquals(getTestMessage(testName, hexString), expected, NumConversion.parseHexStringAsUnsignedLong(hexString));
+    assertEquals(expected, NumConversion.parseHexStringAsUnsignedLong(hexString), getTestMessage(testName, hexString));
   }
 }

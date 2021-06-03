@@ -1,16 +1,14 @@
 package com.ms.silverking.cloud.dht.client.example;
 
-import java.io.IOException;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import com.ms.silverking.cloud.dht.client.ClientException;
 import com.ms.silverking.cloud.dht.client.PutException;
 import com.ms.silverking.cloud.dht.client.RetrievalException;
 import com.ms.silverking.testing.Util;
-
 import com.ms.silverking.testing.annotations.SkLarge;
+import java.io.IOException;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 @SkLarge
 public class ProducerConsumerTest {
@@ -69,7 +67,7 @@ public class ProducerConsumerTest {
 
     private static ProducerConsumer pc;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws ClientException, IOException {
         pc = new ProducerConsumer( Util.getTestGridConfig(), (Util.isSetQuietMode())? 500 : 1 );
     }
@@ -81,27 +79,29 @@ public class ProducerConsumerTest {
         pc.producer(startKey, endKey);
         pc.consumer(startKey, endKey);
     }
-    
-    @Test(timeout=TIMEOUT_MILLIS)
-    public void testProducerConsumer_threadedProducerBeforeConsumer() throws InterruptedException {
+
+  @Test
+  @Timeout(TIMEOUT_MILLIS)
+  public void testProducerConsumer_threadedProducerBeforeConsumer() throws InterruptedException {
         ProducerThread pt = new ProducerThread(pc, 2, 9_000);
         ConsumerThread ct = new ConsumerThread(pc, 2, 9_000);
-        
+
         pt.start();
         ct.start();
-        
+
         pt.join();
         ct.join();
     }
 
-    @Test(timeout=TIMEOUT_MILLIS)
-    public void testProducerConsumer_threadedConsumerBeforeProducer() throws InterruptedException {
+  @Test
+  @Timeout(TIMEOUT_MILLIS)
+  public void testProducerConsumer_threadedConsumerBeforeProducer() throws InterruptedException {
         ConsumerThread ct = new ConsumerThread(pc, 9_001, 10_000);
         ProducerThread pt = new ProducerThread(pc, 9_001, 10_000);
 
         ct.start();
         pt.start();
-        
+
         ct.join();
         pt.join();
     }

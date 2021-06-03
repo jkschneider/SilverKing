@@ -1,12 +1,11 @@
 package com.ms.silverking.cloud.dht.daemon;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.Set;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.ms.silverking.cloud.dht.common.SystemTimeUtil;
 import com.ms.silverking.collection.Pair;
-import org.junit.Test;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 public class PeerHealthStatusTest {
   @Test

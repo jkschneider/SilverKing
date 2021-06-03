@@ -5,7 +5,7 @@ import static com.ms.silverking.testing.AssertFunction.checkHashCodeNotEquals;
 import static com.ms.silverking.testing.AssertFunction.test_FirstEqualsSecond_FirstNotEqualsThird;
 import static com.ms.silverking.testing.AssertFunction.test_NotEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SafeAbsNanosTimeSourceTest {
 

@@ -1,21 +1,7 @@
 package com.ms.silverking.cloud.dht.client.impl;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import com.ms.silverking.cloud.dht.SessionPolicyOnDisconnect;
 import com.ms.silverking.cloud.dht.client.ClientDHTConfiguration;
@@ -29,7 +15,11 @@ import com.ms.silverking.net.AddrAndPort;
 import com.ms.silverking.net.security.AuthFailedException;
 import com.ms.silverking.net.security.NonRetryableAuthFailedException;
 import com.ms.silverking.time.AbsMillisTimeSource;
-import org.junit.Test;
+import java.io.IOException;
+import java.net.ConnectException;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class DHTSessionImplTest {
