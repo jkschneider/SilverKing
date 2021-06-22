@@ -33,7 +33,7 @@ public class SafeThread extends Thread implements Comparable<SafeThread> {
     Log.infof("UncaughtExceptionHandler %s", handlerName == null ? "<none>" : handlerName);
     if (handlerName != null) {
       try {
-        handler = (UncaughtExceptionHandler) Class.forName(handlerName).newInstance();
+        handler = (UncaughtExceptionHandler) Class.forName(handlerName).getDeclaredConstructor().newInstance();
         setDefaultUncaughtExceptionHandler(handler);
       } catch (Exception e) {
         Log.logErrorSevere(e, "Unable to create UncaughtExceptionHandler: " + handlerName, SafeThread.class.getName(),

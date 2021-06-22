@@ -27,7 +27,7 @@ public class ImmutableObjectTester {
 
   public void test(Class _class) {
     try {
-      test(_class.newInstance());
+      test(_class.getDeclaredConstructor().newInstance());
     } catch (Exception e) {
       throw new RuntimeException(e);
     }

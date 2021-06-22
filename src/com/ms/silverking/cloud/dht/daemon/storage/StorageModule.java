@@ -268,7 +268,7 @@ public class StorageModule implements LinkCreationListener, ManagedStorageModule
         StorageMetricsObserver metricsObserver;
 
         try {
-          metricsObserver = (StorageMetricsObserver) Class.forName(metricsObserverName).newInstance();
+          metricsObserver = (StorageMetricsObserver) Class.forName(metricsObserverName).getDeclaredConstructor().newInstance();
           metricsObserver.initialize(metricsNamespaceStores);
           Log.info("Initialized StorageMetricsObserver: " + metricsObserverName);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {

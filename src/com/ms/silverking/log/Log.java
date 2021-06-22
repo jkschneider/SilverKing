@@ -92,7 +92,7 @@ public final class Log {
     val = PropertiesHelper.envHelper.getString(logAlertReceiverEnvVar, UndefinedAction.ZeroOnUndefined);
     if (val != null) {
       try {
-        alertReceiver = (AlertReceiver) Class.forName(val).newInstance();
+        alertReceiver = (AlertReceiver) Class.forName(val).getDeclaredConstructor().newInstance();
         alertLevel = PropertiesHelper.envHelper.getInt(logAlertLevelEnvVar, Level.SEVERE.intValue());
         alertContext = PropertiesHelper.envHelper.getString(logAlertContextEnvVar, defaultLogAlertContext);
         alertKey = PropertiesHelper.envHelper.getString(logAlertKeyEnvVar, UndefinedAction.ZeroOnUndefined);

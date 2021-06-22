@@ -33,7 +33,7 @@ public class StructReader<T> {
     fields = _class.getFields();
     i = 0;
     try {
-      newObject = (T) _class.newInstance();
+      newObject = (T) _class.getDeclaredConstructor().newInstance();
       while (i < tokens.length && i < fields.length) {
         String fieldType;
 

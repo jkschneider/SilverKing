@@ -596,11 +596,11 @@ public class NamespaceStore implements SSNamespaceStore, ManagedNamespaceStore {
         Log.warningf("Ignoring server side code %s. Remote code not currently supported", ssCode.getUrl());
       } else {
         try {
-          putTrigger = (PutTrigger) Class.forName(ssCode.getPutTrigger()).newInstance();
+          putTrigger = (PutTrigger) Class.forName(ssCode.getPutTrigger()).getDeclaredConstructor().newInstance();
           if (ssCode.getPutTrigger().equals(ssCode.getRetrieveTrigger())) {
             retrieveTrigger = (RetrieveTrigger) putTrigger;
           } else {
-            retrieveTrigger = (RetrieveTrigger) Class.forName(ssCode.getRetrieveTrigger()).newInstance();
+            retrieveTrigger = (RetrieveTrigger) Class.forName(ssCode.getRetrieveTrigger()).getDeclaredConstructor().newInstance();
           }
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
           Log.logErrorWarning(e, "Unable to instantiate server side code: " + ssCode);
